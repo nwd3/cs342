@@ -1,0 +1,34 @@
+Homework 1/Exercise 2.13
+Date: 2/3/2017
+Name: Nathanael Dick 
+Subject: CS 342
+
+
+2.	Exercise 2.13
+Student Schedules
+Student_Name	ID	    Saved_schedule
+Bob				11222	2017
+Frank			23423	2015
+Sarah			23543	Fallsemester
+Jill			53402	summer
+
+Course
+Course_name						Course_number	Credit_hours	Department
+Data Structures						112				4				Computer Science
+Intro to Biology					141				4				Biology
+Fundamentals of Biochemistry		303				4				Chemistry
+Microeconomics						201				3				Economics
+
+Prerequisites
+Course_name					Prerequiste_number
+Data Structures					CS1
+Intro to Biology				Bio2
+Fundamentals of Biochemistry	Chem32
+Microeconomics					Econ21
+
+Class Section
+Section_description				Course_number	Semester	Year	Instructor
+Data Structures						112				Fall	2017		Joel Adams
+Intro to Biology					141				Spring	2016		Amy Wilsterman
+Fundamentals of Biochemistry		303				Spring	2017		Eric Arnoys
+Microeconomics						201				Fall	2017		Everret Vanderhiede

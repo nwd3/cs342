@@ -1,0 +1,59 @@
+Guide 1 
+Name: Nathanael Dick 
+Subject: CS 342
+Notes:Book is referenced throughout. Material in book may be directly quoted without 
+quotes.
+
+1.	Chapter 1
+
+	a.	Compare and contrast data, databases, database (management) systems and information systems.
+	Answer:
+		A database is a collection of data.  Data is fact that have meaning an can be recorded.  
+		A database management system is a collection of programs that enables users to create and maintain a database.
+		Information system is at a higher level describing the database and the components that make up the database.
+	b.	Compare and contrast database systems with the following, using the main characteristics of the database approach in your discussion.
+			data structures and algorithms
+		Answer:
+			1.	using an operation on data requires having an interface and an implementation which can be changed 
+			without effecting the interface
+				i.	this happens via data abstraction providing users with a conceptual representation of the
+				actions of the data
+			traditional file systems
+		Answer:
+			1.	in file processing each user defines and implements the files needed for a specific software application as part of programming the application while in a database a single repository maintains data that is defined once eliminating the redundancy needed in file systems.  There is also a
+				i.	self-describing nature of a database system
+				ii.	insulation between programs and data and data abstraction
+				iii.	support of multiple views of the data
+				iv.	sharing of data and multiuser transaction processing
+	c.	Identify the stakeholders of database systems.
+			Government business and industry
+2.	Chapter 2
+	a.	Explain the significance of the categories of data models. Which type of model is displayed in Figure 2.1?
+		Answer:
+		i.	High-level or conceptual data models provide concepts that are close to the way many users perceive data 
+		whereas low-level or physical data models provide concepts that describe that details of how data is stored on 
+		the pc storage media typically magnetic disks.  
+		Between these extremes is the representational or implementation data
+		models which provide concepts that may be easily understood by end users but that are not too far removed from the 
+		way data is organized in pc storage.  Also object data models are a family of higher level implementation data models
+		that are close to conceptual data models used in software engineering domain.
+		j.	Figure 2.1 is a representational model.
+	
+	b.	Explain the structure and significance of the three-schema architecture.
+		Answer:
+		i.	They use of a catalog to store the database description or schema so as to make it self-describing
+		ii.	Insulation of programs and data 
+		iii.Support of multiple user views
+		iV.	These characteristics help us visualize the three schema architecture which is as follows
+			1.	The internal level has an internal schema which describes the physical storage structure of the database the internal schema uses a physical data model and describes the complete details of that storage access paths for the database
+			2.	The conceptual level has a conceptual schema which describes the structure of the whole database for a community of users the conceptual schema hides the details of physical storage structures and concentrates on describing data types relationships user operations constraints and entities
+			3.	The external or view level includes a number of external schemas or user views each external schema describes the part of the database that a particular user group is interested in and hides the rest of the database from that user group.
+	
+	c.	Explain the tiers used in a typical web-based information system.
+	Answer:
+		A three tier structur is often used.  This adds an intermediate layer between the client 
+		and dthe database server this middle tier is called the application or web server it plays an intermediary role
+		by running applclication programs and storing business rules tha uare used to access data from the database server
+		it can also improve database security by checking a clients credentials before allowing them accessess
+
+3.	Done.

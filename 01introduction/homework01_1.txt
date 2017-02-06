@@ -1,0 +1,12 @@
+Homework 1/Exercise 1.14 
+Date: 2/3/2017
+Name: Nathanael Dick 
+Subject: CS 342
+
+
+1.	Exercise 1.14
+The following columns would need to be changed:
+	a.  In the Student table the Major column.  In the course table the Course_number, and the Department columns. 
+ In the Section table the Course_number column.  In the prerequisite table the Course _number and the 
+ Prerequisite_number columns. 
+	b. Yes, my solution would be to eliminate the corresponding prefix that exists in the course_number column and instead use the department column to identify the class.  You would have to add a department column to both the Section and Prerequisite tables.  For Example in the Course table under the column Course_number CS1310 would be changed to 1310 and the class would be identified by the department column.

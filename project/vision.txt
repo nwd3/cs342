@@ -1,0 +1,13 @@
+Project 1 1/vision 
+Date: 2/3/2017
+Name: Nathanael Dick 
+Subject: CS 342
+CS 342: Database Systems
+
+Project
+1.	Vision-
+
+  My vision for the database project for CS 342 is the following:
+  I have an Etsy business and website that sells handcrafted wood products to hundreds of people each year.  The business has access to hundreds of customer accounts, favorites, and product data.  My plan is to institute a database that can gather the data that has been accumulated on the Etsy site and my website.
+  My plan for the database is to use the data I have collected to better understand the priorities of my customers and understand the products that are the most popular.  Further I think I will be able to use this database to generate a better email newsletter to my customers.  
+  This manipulation of data will, I feel, be valuable to our business as we seek to serve our customers and maximize our profits.
