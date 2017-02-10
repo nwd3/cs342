@@ -1,0 +1,28 @@
+lab02_2 
+Name Nathanael Dick 
+February 10, 2017
+
+Exercise 2.2
+
+a.
+I would say it is possible I would implement the following code in the Movie table area:
+votes float,
+
+CONSTRAINT ch CHECK ((year > 1900) 
+AND (votes >1000 AND score IS NOT NULL))
+);
+
+Reference:
+--http://stackoverflow.com/questions/10273750/sql-conditional-not-null-constraint
+http://stackoverflow.com/questions/18146353/can-check-constraints-act-like-if-else
+http://www.w3schools.com/sql/sql_check.asp
+http://www.w3schools.com/Sql/sql_and_or.asp
+http://stackoverflow.com/questions/10273750/sql-conditional-not-null-constraint
+etc..
+
+b. This might be very necessary if say a structure of a id changes
+say a company sometimes uses id numbers that have to be greater than
+9000
+but othertimes it uses id's less than 3000
+thus if you are able to alter the constraints you can ensure reliability with your
+data entries.
