@@ -93,15 +93,10 @@ INSERT INTO Casting VALUES (2,4,'costar');
 
 --b.
 --i.
---INSERT INTO Casting VALUES (NULL,4,'costar');
---actually no error i heard people commenting no error was given
--- so i tried it again and used a table with foriegn keys this time and I got no error
---INSERT INTO Movie VALUES (NULL,'Star Wars',1977,8.9,1000);
+INSERT INTO Movie VALUES (NULL,'Star Wars',1977,8.9);
 --gives error ORA-01400: cannot insert NULL into ("NWD3"."MOVIE"."ID")
 --can't insert a null value into a foreign key because the tables then
 --are unable to talk to each other using that key
-
-
 
 --ii.
 --INSERT INTO Casting VALUES (10,1,'star');
