@@ -79,6 +79,3 @@ INSERT INTO Casting VALUES (2,1,'star');
 INSERT INTO Casting VALUES (2,1,'star');
 INSERT INTO Casting VALUES (2,2,'costar');
 INSERT INTO Casting VALUES (2,4,'costar');
-
---Exercise 2.3
---In oracle enum is not supported in mysql you can use enum
