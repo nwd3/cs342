@@ -1,0 +1,109 @@
+--often direct quotes from book without quotes
+--guide04
+--Nathanael Dick
+--February 18, 2017
+1.
+	a.
+		1.Making sure that the semantics of the attributes is clear in the schema:
+The design of a database must be such that it is easy to explain its meaning from the semantics.
+		2.Redundant Information in Tuples and Update Anomalies:
+	We need to minimize the storage space used by the base relations. This can be done by grouping attributes into
+relation schemas. If we delete from EMP_DEPT an employee
+tuple that happens to represent the last employee working for a particular department,
+the information concerning that department is lost inadvertently from the
+database.
+Also if we change a value of an attribute in a department we may have to update the entire department.
+		3.NULL Values in Tuples:
+Null values can waste space
+		4. Generation of Spurious Tuples:
+	Natural joing can lead to unecessary entries.  To desing a database without this you need to design 
+relation schemas that are appropriately related having foreing and primary keys in a way that guarantees
+that no spurious tuples are generated.  Avoid relations
+that contain matching attributes that are not (foreign key, primary key) combinations
+because joining on such attributes may produce spurious tuples.
+
+	b.
+			Functional Dependency:
+	A functional dependency is a constraint between two sets of attributes from the
+database.  This is the relationship between two subsets that specifies a constraint on the tupes that can form
+a relation.
+	For example, {State, Driver_license_number} ? Ssn should
+normally hold for any adult in the United States and hence should hold whenever
+these attributes appear in a relation. For
+example, the FD Zip_code ? Area_code used to exist as a relationship between postal
+codes and telephone number codes in the United States, but with the proliferation
+of telephone area codes it is no longer true.
+Consider the relation schema EMP_PROJ in Figure 14.3(b); from the semantics of
+the attributes and the relation, we know that the following functional dependencies
+should hold:
+a. Ssn ? Ename
+b. Pnumber ? {Pname, Plocation}
+c. {Ssn, Pnumber} ? Hours
+	These functional dependencies specify that (a) the value of an employee’s Social
+Security number (Ssn) uniquely determines the employee name (Ename), (b) the
+value of a project’s number (Pnumber) uniquely determines the project name
+(Pname) and location (Plocation), and (c) a combination of Ssn and Pnumber values
+uniquely determines the number of hours the employee currently works on the
+project per week (Hours). Alternatively, we say that Ename is functionally determined
+by (or functionally dependent on) Ssn, or given a value of Ssn, we know the
+value of Ename, and so on.
+I.E.:  It is, however, sufficient to demonstrate a single counterexample
+to disprove a functional dependency. For example, because ‘Smith’ teaches both
+‘Data Structures’ and ‘Database Systems,’ we can conclude that Teacher does not
+functionally determine Course.
+
+			Multivalued Dependency:
+	A tuple in this EMP relation
+represents the fact that an employee whose name is Ename works on the project
+whose name is Pname and has a dependent whose name is Dname. An employee
+may work on several projects and may have several dependents, and the employee’s
+projects and dependents are independent of one another. To keep the relation
+state consistent and to avoid any spurious relationship between the two independent
+attributes, we must have a separate tuple to represent every combination of an
+employee’s dependent and an employee’s project.
+
+	c.Review the formal definitions of these terms: superkey; key
+
+Definition. The normal form of a relation refers to the highest normal form
+condition that it meets, and hence indicates the degree to which it has been
+normalized.
+Definition. A superkey of a relation schema R = {A1, A2, … , An} is a set of attributes
+S ? R with the property that no two tuples t1 and t2 in any legal relation
+state r of R will have t1[S] = t2[S]. A key K is a superkey with the additional property
+that removal of any attribute from K will cause K not to be a superkey anymore.
+A key must be minimal while a superkey not so.
+
+	d. Explain BCNF (for Monday, see Section 14.5) and 4NF (for Wednesday, see Section 14.6) 
+by giving an example relation and proving whether its schema conforms (or fails to conform) to the 
+definitions of each normal form:
+
+BCNF: Every relation in cvnf is also in 3nf bowever a relationi in 3nf is not necessarilt in bcnf.
+BCNF disallows functional dependies and is a stricter version of noraml from.
+Example: 
+FD1: {Student, Course} ? Instructor
+FD2:14 Instructor ? Course
+
+they may have several different decompostions regarding their relations
+1. R1 (Student, Instructor) and R2(Student, Course)
+2. R1 (Course, Instructor) and R2(Course, Student)
+3. R1 (Instructor, Course) and R2(Instructor, Student)
+but which one works?
+we must apply the njb test
+The FD ((R1 n R2) ? (R1 - R2)) is in F+15, or
+The FD ((R1 n R2) ? (R2 - R1)) is in F+
+If we apply this test only the third works
+the R1 n R2 for the above
+test is Instructor and R1 - R2 is Course. Because Instructor ? Course, the NJB test
+is satisfied
+
+		4NF 
+
+	e.You might not normalize for performance reasons but also normalization can help
+remove spurious tuples.
+
+2.Review Section 15.1.1 well enough to be able to define Armstrong’s axioms (IR1–3) and closures.
+	Armstrong’s axioms:
+		IR1 (reflexive rule)2: If X ? Y, then X ?Y.
+		IR2 (augmentation rule)3: {X ? Y} |=XZ ? YZ.
+		IR3 (transitive rule): {X ? Y, Y ? Z} |=X ? Z.
+	closure:set of dependencies of something
