@@ -1,0 +1,9 @@
+reference: http://jcsites.juniata.edu/faculty/rhodes/dbms/ermodel.htm
+1.
+a. Difference between flights, flight legs, and flight instances.
+A flight would be the general table that describes the entire flight whereas a flight leg is part of a flight. 
+ Flight instances are what makes up a flight.  For example, Leg_Instance makes up an instance of flight in the database.
+B. From online: Dotted underlining of a key is found in weak entity attributes. 
+ It is a partial key, “called a discriminator,” it is used to distinguish the “instances of the weak entity that are 
+related to the same strong entity. (referenced above).
+C. I would think they did it this way because they observed that one seat could possibly be assigned to several people during the course of the entire flight.  For example if you were on a  flight headed from Grand Rapids to Las Vegas the flight might stop in Chicago where you were headed  and then go on to Las Vegas with another person in your seat.

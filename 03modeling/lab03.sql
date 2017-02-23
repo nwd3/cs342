@@ -2,8 +2,11 @@
 -- Nathanael Dick
 -- CS 342, Spring, 2017
 -- kvlinden
-
+--updated for Exercise 3.3 Homework
+--here is the reference
+--http://dba.stackexchange.com/questions/34040/many-to-many-and-weak-entities
 --drop tables
+Drop TABLE Request;
 DROP TABLE TeamRole;
 DROP TABLE teams;
 DROP TABLE Person;
@@ -59,7 +62,17 @@ CREATE TABLE TeamRole (
 	FOREIGN KEY (team_id) REFERENCES teams(ID) ON DELETE CASCADE
 	);
 
-
+Create TABLE Request(
+date_of_req date,
+requestor_id integer Not null,
+text varchar(1000),
+access_to_request integer,
+response varchar(1000),
+--see reference url above for the following implementation of a weak entity
+primary key(date_of_req,requestor_id),
+foreign key (access_to_request) REFERENCES Person(ID) ON DELETE SET NULL,
+foreign key (requestor_id) REFERENCES HouseHold(ID) ON DELETE SET NULL
+);
 --creating two households
 INSERT INTO Household VALUES (10,'2347 Oxford Dr. SE','Grand Rapids','MI','49506','616-243-5680');
 INSERT INTO Household VALUES (11,'3456 Wisco Dr. NE','Grand Rapids','MI','49525','616-436-4554');
@@ -86,3 +99,6 @@ INSERT INTO TeamRole values('secretary',1,12,'12-FEB-1999','15,Jan-2016');
 INSERT INTO TeamRole values('',0,12,'12-FEB-1999','15,Jan-2016');
 INSERT INTO TeamRole values('',0,12,'12-FEB-1999','15,Jan-2016');
 INSERT INTO TeamRole values('',1,12,'12-FEB-1999','15,Jan-2016');
+
+INSERT INTO Request values('12-FEB-1999',10,'I need help.',0,'I will help');
+INSERT INTO Request values('13-FEB-1999',11,'I need help moving.',3,'');
