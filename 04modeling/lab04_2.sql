@@ -1,18 +1,23 @@
 
 /* Exercise 4.2
-	a. The relations are in BCNF
+	a. 
+	The relations are in BCNF
 		The functional Dependencies for Person Team are 
 		personName,teamName--->
 		The functional Dependencies for PersonVisit are
 		personName, personVisit --->
-		The relations are in 4NF as well the multivalued dependencies all have the superkey on the left hand side(there are no multivalued dependencies) satisfying the definition of 4th NF
-	b. The relations are in BCNF there are no functional dependencies so by the definition of functional dependencies the canidate key is on the left and the 
+	The relations are in 4NF
+	The multivalued dependencies all have the superkey on the left hand side(there are no multivalued dependencies) satisfying the definition of 4th NF
+	b. 
+	The relations are in BCNF
+There are no functional dependencies so by the definition of functional dependencies the canidate key is on the left and the 
 relation is in BCNF. 	
 
-The relations are not in 4NF because you need to have all parts of the relation to specify the key and you create a relation with a no canidate key on the left for the multivalued dependency.
+	The relations are not in 4NF
+You need to have all parts of the relation to specify the key and you create a relation with a no canidate key on the left for the multivalued dependency.
 If he visits on April 5 then you would have to update the elders and the executive records.  In this case only 2 records but the list could grow if he attends church more often.
-Formal: The multivalued dependencies are taht the date, person --> team  
-The problem is that date and person is not a superkey thus the table is not in 4NF by the definition of 4NF.
+Formal: The multivalued dependencies are date, person ==> team  
+The problem is that date and person is not a superkey(the canidate key is date,person,team) thus the table is not in 4NF by the definition of 4NF.
 This means that they are not equally appropriate the view creates a better description of the data.
 	
 	c.  The views are not as equally appropriate because you are creating a multivalued dependency problem for the view table.  In the previous table you did not have to update the 
