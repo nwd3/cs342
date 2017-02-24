@@ -25,6 +25,8 @@ This means that they are not equally appropriate the view creates a better descr
 	c.  The views are not as equally appropriate because you are creating a multivalued dependency problem for the view table.  In the previous table you did not have to update the 
 	previous relations every time you added a visit while in the view table you do so this does not work well if you want to add many visits.  Consequently the part a schematia is better.
 	The choice does depend on the context for example if everyone notes that he attends and the table is updated appropriately.
+ 
+ 
  */
 
 
