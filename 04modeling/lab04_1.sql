@@ -37,7 +37,7 @@ CREATE TABLE AltPerson (
     teamRole varchar(10),
     teamTime varchar(10)
 	);
-	create table Mentor(
+ 	create table Mentor(
 	mentorId integer primary key,
 	mentorName varchar(10),
 	mentorStatus char(1)
@@ -48,13 +48,13 @@ Create table Person(
 	status char(1),
 	mentorId integer,
 	foreign key (mentorID) references Mentor(mentorId) on Delete Cascade
-);
+); 
 
 
 
 INSERT INTO AltPerson VALUES (0, 'Ramez', 'v', 1, 'Shamkant', 'm', 'elders', 'trainee', 'Monday');
 INSERT INTO AltPerson VALUES (1, 'Shamkant', 'm', NULL, NULL, NULL, 'elders', 'chair', 'Monday');
-INSERT INTO AltPerson VALUES (1, 'Shamkant', 'm', NULL, NULL, NULL, 'executive', 'protem', 'Wednesday');
+--INSERT INTO AltPerson VALUES (1, 'Shamkant', 'm', NULL, NULL, NULL, 'executive', 'protem', 'Wednesday');
 INSERT INTO AltPerson VALUES (2, 'Jennifer', 'v', 3, 'Jeff', 'm', 'deacons', 'treasurer', 'Tuesday');
 INSERT INTO AltPerson VALUES (3, 'Jeff', 'm', NULL, NULL, NULL, 'deacons', 'chair', 'Tuesday');
 -- Query a combined "view" of the data of the form View(name, team, visit).

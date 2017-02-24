@@ -16,7 +16,9 @@ relation is in BCNF.
 	The relations are not in 4NF
 You need to have all parts of the relation to specify the key and you create a relation with a no canidate key on the left for the multivalued dependency.
 If he visits on April 5 then you would have to update the elders and the executive records.  In this case only 2 records but the list could grow if he attends church more often.
-Formal: The multivalued dependencies are date, person ==> team  
+
+Formal: The multivalued dependencies are person -->> team  with respect to date
+and symetrically date -->>team with respect to the person
 The problem is that date and person is not a superkey(the canidate key is date,person,team) thus the table is not in 4NF by the definition of 4NF.
 This means that they are not equally appropriate the view creates a better description of the data.
 	
