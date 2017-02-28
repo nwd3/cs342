@@ -1,0 +1,33 @@
+
+CREATE TABLE ORDER_Item(
+	Ordersaa integer NOT NULL,
+	Itemaa integer NOT NULL,
+	Qtyaa integer NOT NULL,
+	PRIMARY KEY (Ordersaa,Itemaa),
+	FOREIGN KEY (Ordersaa) REFERENCES ORDER_o(Ordersaa) ON DELETE CASCADE,
+	CHECK(Qtyaa > 0)
+	);
+CREATE TABLE ITEM(
+	itemaa integer NOT NULL,
+	Unit_price float, 
+	item_name varchar(70),
+	PRIMARY KEY (Itemaa),
+	FOREIGN KEY (Itemaa) REFERENCES ORDER_Item(Itemaa) ON DELETE SET NULL,
+	
+	);
+	
+CREATE TABLE SHIPMENT(
+	Ordersaa integer NOT NULL,
+	Warehouseaa integer NOT NULL, 
+	Ship_date varchar(60),
+	PRIMARY KEY (Ordersaa,Warehouseaa),
+	FOREIGN KEY (Ordersaa) REFERENCES ORDER_o(Ordersaa) ON DELETE SET NULL
+	
+	);
+CREATE TABLE Warehouse(
+	Warehouseaa integer NOT NULL, 
+	City varchar(70), 
+	PRIMARY KEY (Warehouseaa),
+	FOREIGN KEY (Warehouseaa) REFERENCES SHIPMENT(Warehouseaa) ON DELETE SET NULL
+	
+	);

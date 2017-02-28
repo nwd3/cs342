@@ -1,0 +1,26 @@
+INSERT INTO Orders VALUES (2, '01-JAN-97', 1, 2325);
+INSERT INTO Orders VALUES (3,'01-JAN-99', 1, 239);
+INSERT INTO Orders VALUES (4, '01-JAN-91', 1, 873.23);
+INSERT INTO Orders VALUES (5, '01-JAN-92', 1, 65);
+
+INSERT INTO ORDER_Item VALUES(1,12,4);
+INSERT INTO ORDER_Item VALUES(2,10,4);
+INSERT INTO ORDER_Item VALUES(3,9,1);
+INSERT INTO ORDER_Item VALUES(4,8,1);
+INSERT INTO ORDER_Item VALUES(5,7,12);
+
+INSERT into item VALUES(12, 24, 'book');
+INSERT into item VALUES(10, 243, 'hat');
+INSERT into item VALUES(9, 23, 'toothbrush');
+
+
+
+
+Insert into SHIPMENT VALUES (1,145,'1/04/1977');
+Insert into SHIPMENT VALUES (2,146,'1/04/1977');
+Insert into SHIPMENT VALUES (3,147,'1/04/1977');
+Insert into SHIPMENT VALUES (4,148,'1/04/1977');
+
+Insert into Warehouse VALUES (145,'West Las');
+Insert into Warehouse VALUES (146,'Grand Rapids');
+Insert into Warehouse VALUES (148,'Lansing');
