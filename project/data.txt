@@ -1,0 +1,58 @@
+1. Some of the data I made up but some of the data is real data from my etsy store.  I plan on adding more real
+data as I continue with this project.
+2.I am in BCNF form. I feel like for this project BCNF is a good form that is not too restrictive but at the same time is restrictive
+enough to create the database properly.
+
+employees:
+1.employee number->firstName varchar(1400),
+	lastname varchar(1300),
+	email_address
+2.canidate key: employee number
+3. the canidate key is on the left hand side of the fd thus the table is in BCNF
+
+part:
+1.part_num->quantity integer,
+	part_name varchar(1002),
+	part_Desc varchar(1002),
+	price
+2.canidate key: part_num
+3. the canidate key is on the left hand side of the fd thus the table is in BCNF
+
+customer
+1.cust_num->firstName varchar(1002),
+	lastname varchar (1002),
+	email_address varchar(2000),
+	shipping_Address
+2. canidate key: cust_num
+3. the canidate key is on the left hand side of the fd thus the table is in BCNF
+
+orders
+1.order_num->date_ordered,
+	exp_ship_date,
+	act_ship_date,
+	part_num,
+	employee_number,
+	cust_num,
+	quantity
+2.canidate key: order_num
+3. the canidate key is on the left hand side of the fd thus the table is in BCNF
+
+partorder
+1.part_num->order_num,
+	quantity
+2.canidate key: part_num
+3. the canidate key is on the left hand side of the fd thus the table is in BCNF
+
+Feedback 
+1.feedback_id->order_num,
+	cust_num,
+	feedback
+2.canidate key: feedback_id
+3. the canidate key is on the left hand side of the fd thus the table is in BCNF
+
+reviews
+1.feedback_id->order_num integer,
+	cust_num,
+	feedback
+2.canidate key: feedback_id
+3. the canidate key is on the left hand side of the fd thus the table is in BCNF
