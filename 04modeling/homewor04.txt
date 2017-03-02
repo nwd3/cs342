@@ -1,0 +1,55 @@
+﻿Homework04
+Nathanael Dick
+1.
+	a. The relation is in 1NF because there are no multiple values (definition of 1NF).
+	I will show that the relation violates BCNF:
+	The canidate key would be Book_title, Book_type, and Author_name.
+	The relation is not in BCNF because of this functional dependency:
+	Book_type → List_price.  In this functional dependency the key on the left is not a superkey and thus violates BCNF (definition of BCNF).
+	The relation is not in 4NF by the same reasoning as above.  A relation that is not in BCNF can not be in 4 NF.
+
+b.
+	I split apart Book into three tables so that the functional dependencies could be described by super keys.
+I then assigned an id to Book and author so that each book and author could be uniquely identified.  I did this because I assumed it 
+would be possible to have two authors with the same name and title of the book.  Thus this allows me to remove any conflicts of that nature.  Furthur creating an 
+author_id allows me to assign multiple books to one author without adding the author's name to every book record eliminating redundant information.
+
+Normalization:
+	Book( book_id,author_id, Book_title, book_type)(primarykey:book_id)
+
+	Author( author_id, Author_name, Author_affil)(primarykey:book_id)
+
+	Book_Listing(listing_id,book_type, List_price)(primarykey:book_id)
+
+So that the functional dependencies and proofs are:
+Book
+	1.book_id-→author_id, Book_title, Book_type
+	2. The canidate key is book_id
+	3. the canidate key is on the left
+
+Author
+	1.author_id→ Author_name, Author_affil
+	2. The canidate key is book_id
+	3. the canidate key is on the left
+
+Book_Listing
+	1. book_type list_price
+	2. The canidate key is book_type
+	3. the canidate key is on the left
+ 
+2.
+	a. Book_name and edition 
+	b. You can tell that from year to year based on the book there are multiple authors 
+with respect to the edition and the year.  Thus the book depends on the multiple authors from 
+year to year creating a multivalued dependency.
+	c. 
+	author(Book_name, Author)
+	edition(Book_name, edition)
+	Year(Book_name, year)
+	This is now in 4NF
+	Book_name->author
+	Book_name-> edition
+	Book_name->year
+Only trival multivalued dependencies.
+	
+	
