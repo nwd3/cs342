@@ -9,41 +9,40 @@ Nathanael Dick
 	The relation is not in 4NF by the same reasoning as above.  A relation that is not in BCNF can not be in 4 NF.
 
 b.
-	I split apart Book into three tables so that the functional dependencies could be described by super keys.
-I then assigned an id to Book and author so that each book and author could be uniquely identified.  I did this because I assumed it 
-would be possible to have two authors with the same name and title of the book.  Thus this allows me to remove any conflicts of that nature.  Furthur creating an 
-author_id allows me to assign multiple books to one author without adding the author's name to every book record eliminating redundant information.
-
+	I split apart Book into four tables so that the functional dependencies could be described by super keys.
+I then created the tables based on their functional dependencies.  I gave book attributes boot_title, author_name, publisher, book_type making sure to keep the functional dependencies such that the canidate key book_title was always on the left.
+	I then added the author table with its attributes and functional dependicies keeping the canidate key on the left of those dependencies.
+	I then added book_type with attribute list_price as its functional dependency.
+My normalization normalizes the relations to 4NF.  There are no nontrivial multivalued dependencies and the functional dependencies are
+listed below.
 Normalization:
-	Book( book_id,author_id, Book_title, book_type)(primarykey:book_id)
-
-	Author( author_id, Author_name, Author_affil)(primarykey:book_id)
-
-	Book_Listing(listing_id,book_type, List_price)(primarykey:book_id)
+	Book(Book_title, author_name,publisher,book_type) (primarykey:book_title)
+	Author(Author_name,  Author_affil) (primarykey: author_name)
+	bookt_type(book_type, List_price)
 
 So that the functional dependencies and proofs are:
 Book
-	1.book_id-→author_id, Book_title, Book_type
-	2. The canidate key is book_id
+	1.Book_title -> publisher, book_type  (I am assuming book titles are not the same which I think is required according to copyright laws)
+	2. The canidate key is Boot_title
 	3. the canidate key is on the left
 
 Author
-	1.author_id→ Author_name, Author_affil
-	2. The canidate key is book_id
+	1. Author_name→ Author_affil(I am assuming that you can't have authors with the same exact full name)
+	2. The canidate key is author_name
 	3. the canidate key is on the left
-
+	
 Book_Listing
-	1. book_type list_price
+	1. book_type-> list_price
 	2. The canidate key is book_type
 	3. the canidate key is on the left
  
 2.
-	a. Book_name and edition 
+	a. Book_name and edition or Book_name, year
 	b. You can tell that from year to year based on the book there are multiple authors 
 with respect to the edition and the year.  Thus the book depends on the multiple authors from 
 year to year creating a multivalued dependency.
 	c. 
-	author(Book_name, Author)
+	author(Book_name, Author) primary key book name
 	edition(Book_name, edition)
 	Year(Book_name, year)
 	This is now in 4NF
