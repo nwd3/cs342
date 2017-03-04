@@ -1,7 +1,7 @@
-1. Some of the data I made up but some of the data is real data from my etsy store.  I plan on adding more real
-data as I continue with this project.
+1. Some of the data I made up and some from 'behind the name' random name generator website but some of the data is real data from my etsy store.  I plan on adding more real data as I continue with this project.
 2.I am in BCNF form. I feel like for this project BCNF is a good form that is not too restrictive but at the same time is restrictive
-enough to create the database properly.
+enough to create the database properly without having conflicts.
+Note I chose to create reviews and feedback as seperate tables as that fits into how we actually get data in our business.
 
 employees:
 1.employee number->firstName varchar(1400),
