@@ -48,13 +48,9 @@ This means that they are not equally appropriate the view creates a better descr
 
 -- kvlinden
 
-
-
 DROP TABLE PersonTeam;
 DROP TABLE PersonVisit;
-
-
-
+Drop table PersonTeamsVisit;
 CREATE TABLE PersonTeam (
 	personName varchar(10),
     teamName varchar(10)
@@ -66,8 +62,13 @@ CREATE TABLE PersonVisit (
     personVisit date
 	);
 
-
-
+Create Table PersonTeamsVisit(
+	personName varchar(10),
+	teamName varchar(10),
+	personVisit date
+);
+	
+	
 -- Load records for two team memberships and two visits for Shamkant.
 
 INSERT INTO PersonTeam VALUES ('Shamkant', 'elders');
@@ -80,3 +81,10 @@ INSERT INTO PersonVisit VALUES ('Shamkant', '1-MAR-2015');
 SELECT pt.personName, pt.teamName, pv.personVisit
 FROM PersonTeam pt, PersonVisit pv
 WHERE pt.personName = pv.personName;
+
+
+
+--4.2d
+insert into  PersonTeamsVisit select  PersonVisit.personName, PersonTeam.teamName, PersonVisit.personVisit From PersonVisit,PersonTeam;
+
+
