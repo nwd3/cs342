@@ -1,4 +1,4 @@
-drop table Request;
+/* drop table Request;
 drop table PersonTeam;
 drop table Person;
 drop table HouseHold;
@@ -123,19 +123,42 @@ INSERT INTO Request VALUES (2, 6,'15-OCT-1997',9,'less hymns','p',NULL);
 INSERT INTO Request VALUES (3, 6,'15-OCT-1997',9,'the sermons are boring but not as bad as college lectures','p','tuff its good for you');
 INSERT INTO Request VALUES (4, 4,'22-OCT-1997',10,'the sermons are great','p','thanks!');
  
-
-/* select t.name,t.mandate
-from team t
+ */
+ --Exercise 6.1
+ --a.
+ --consider chair during join
+select distinct t.name,t.mandate,p.id
+from team t,person p
 left outer join PersonTeam
-on personTeam.teamName=t.name
-where personTeam.role='chair';
+on personTeam.teamName=t.name and personTeam.role='chair'and PersonTeam.personID=p.id; 
 
-select t.name, t.mandate,pt.personID
+--where personTeam.role='chair';
+
+/* select t.name, t.mandate,pt.personID
 from team t, PersonTeam pt
 where pt.teamName=t.name
-and pt.role='chair'or NULL; */
+and pt.role='chair'or NULL;  */
 
 
+--Exercise 6.2
+--a.
+/* select avg(TRUNC((months_between(SYSDATE,p.birthdate)/12),-1)) "average age"
+from person p; */
 
-select Average=(SELECT months_between(SYSDATE,p.birthdate) from person p)
-from person;
+--b.
+/*  select p.householdID, count(p.householdID) as t
+from person p, household h
+where p.householdID=h.id
+and h.city='Grand Rapids'
+group by householdID
+having count(p.householdID)>=2
+order by t desc;  */
+
+--c
+ /* select p.householdID,h.phoneNumber, count(p.householdID) as t
+from person p, household h
+where p.householdID=h.id
+and h.city='Grand Rapids'
+group by p.householdID,h.phoneNumber
+having count(p.householdID)>=2
+order by t desc;  */
