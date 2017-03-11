@@ -1,6 +1,7 @@
 --Exercise 6.2
 --john from class and others helped on b and c
---a.
+--a. yes this is doing a grouping of all the dates between the sysdate and the birthdate and then applying the aggregate 
+--function average on them
 select avg(TRUNC((months_between(SYSDATE,p.birthdate)/12),-1)) "average age"
 	from person p;
 
