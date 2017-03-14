@@ -1,7 +1,9 @@
 -- Sample version of the Movies database for guide 7 (copied from unit 6)
---
+--quotes from book and online
 -- CS 342, Spring, 2017
 -- kvlinden
+--Nathanael Dick
+--Guide 7
 
 -- Drop current database
 DROP TABLE Casting;
@@ -79,3 +81,17 @@ FROM clause of the SELECT statement, and is not restricted by the WITH READ ONLY
 --Enable Data Subsetting
 --Enable Disconnected Computing"
 --and this may be faster and more efficient than using a query updating system
+
+--2.(Added on Tuesday)
+--a see attached photo 
+--b see attached photo
+
+--Define the following terms):
+--Existential: this is true "if there exists some tuple that makes F true
+--Universal: this "is true if every possible tuple that can be assigned to free occurrences of t in F is substitued  for t, and F is true
+--for every such subsitution...every tuple in the universe of tuples must make F true to make the quantified formula true."
+
+--Safe expressions (see Section 8.6.8).
+--"A safe expression in relational calculus is one that is guaranteed to
+--yield a finite number of tuples as its result; otherwise, the expression is called unsafe."
+
