@@ -1,11 +1,13 @@
 --Homework 6
+--Nathanael Dick
 --a
-select e2.employee_id,count(e2.employee_id) as t,e2.first_name,e2.last_name
+select * from
+(select e2.employee_id,count(e2.employee_id) as t,e2.first_name,e2.last_name
 from employees e,employees e2
 	where e.manager_id=e2.employee_id
-	group by e2.employee_id,e2.first_name,e2.last_name
-	limit 2
-	order by t desc;
+	GROUP BY e2.employee_id,e2.first_name,e2.last_name
+	order by t desc)
+where rownum<=10;
 --b
 select Distinct d.department_name,count(e1.department_id) as t, Sum(e1.salary)
 	from departments d, employees e1, locations l, countries c
@@ -25,3 +27,4 @@ select d.department_name, avg(e.salary)
 	left outer join employees e on e.department_id=d.department_id
 	group by d.department_name
 	order by avg(e.salary) desc;
+	
