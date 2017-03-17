@@ -1,4 +1,4 @@
-drop table Request;
+/* drop table Request;
 drop table PersonTeam;
 drop table Person;
 drop table HouseHold;
@@ -122,40 +122,52 @@ INSERT INTO Request VALUES (1, 0,'08-OCT-1997',9,'thanks for the hymn','p',NULL)
 INSERT INTO Request VALUES (2, 6,'15-OCT-1997',9,'less hymns','p',NULL);
 INSERT INTO Request VALUES (3, 6,'15-OCT-1997',9,'the sermons are boring but not as bad as college lectures','p','tuff its good for you');
 INSERT INTO Request VALUES (4, 4,'22-OCT-1997',10,'the sermons are great','p','thanks!');
- 
- 
- drop view birthday_czar;
-create or replace view birthday_czar (a,b,c,d)
-As SELECT p.firstName, p.lastName, TRUNC((months_between(SYSDATE,p.birthdate)/12),-1) "birtday" , p.birthdate
+ */
+
+ --d see below for explanation
+ drop view birthday_czar2;
+
+--create view
+ create or replace view birthday_czar (a,b,c,d)
+As SELECT p.firstName, p.lastName, TRUNC((months_between(SYSDATE,p.birthdate)/12),-1) "age" , p.birthdate
+	From person p;
+
+--7.1.a
+ select bc.d, bc.a
+from birthday_czar bc
+where bc.d between '01-JAN-61' and '31-DEC-75'; 
+	
+--7.1.b when i updated the row it updated the view and the view did not display Keith VanderLinden
+
+UPDATE Person
+SET birthdate = NULL
+WHERE id = 0;
+
+ select bc.d, bc.a
+from birthday_czar bc
+where bc.d between '01-JAN-61' and '31-DEC-75';  
+
+
+
+--c 
+ --I had to get rid of the age in this view
+create or replace view birthday_czar2 (a,b,c,d,e,f)
+As SELECT p.firstName, p.lastName, p.birthdate, p.id, p.title, p.membershipStatus
 	From person p;
 	
-select bc.d, bc.a
-from birthday_czar bc
-where bc.d between '01-JAN-61' and '31-DEC-75';
-	
-/* 	INSERT INTO SectionView(id, letter, semester, year, professor)
-VALUES (13, 'A', 'FA', '2015', 'VanderLinden') */
 
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+--after I inserted it it updated the view with Cindy's name
+INSERT INTO birthday_czar2
+ VALUES ('cindy', 'angder', '21-DEC-75', 144, 'mr.', 'm');
+
+
+ select bc.a
+from birthday_czar2 bc
+where bc.c between '01-JAN-61' and '31-DEC-75'; 
+
+
+--d. not visually
+
+
+
+
