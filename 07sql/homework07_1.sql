@@ -10,11 +10,10 @@ select distinct a.first_name, a.last_name, a.employee_id
 from allEmpView a, allEmpView b
 where a.HIRE_DATE in (select max(e.hire_date) from employees e, departments d where e.department_id
 							=d.department_id and d.department_name='Executive');
-select distinct a.first_name, a.last_name, a.employee_id
-from allEmpView a, allEmpView b
-where a.HIRE_DATE a.department_name='Executive'
-and rownum=1
-order by asc;							
+
+
+
+						
 --b
 --ORA-01779: cannot modify a column which maps to a non key-preserved table
 UPDATE allEmpView
@@ -63,7 +62,7 @@ where sv.HIRE_DATE in (select max(e.hire_date) from employees e, departments d w
 --b
 --b
 --ORA-01779: cannot modify a column which maps to a non key-preserved table
-UPDATE allEmpView
+UPDATE sv
 SET department_name = 'Administration'
 WHERE department_name = 'Bean Counting';
 
@@ -74,6 +73,7 @@ SET first_name = 'Manuel'
 WHERE first_name = 'Jose Manuel' ;		
 
 
+--d can't do this because you can't insert into a materialized table
 insert into sv 
 Values(9000, 'Lance', 'Hilkensien', 'lande@gmail.com', '01-OCT-1997','01-OCT-1997');
 drop view allEmpView;
