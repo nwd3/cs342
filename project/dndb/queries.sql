@@ -172,8 +172,9 @@ select * from shipview;
 
 --I made this view specific for the employee that does the packaging another employee takes care
 	--of updating the shipping status and I  add that view as a non-materialized view as seen above
---Thus I do not want data to be changed and also I want the table to be linked to base table
---so I chose materialized view
+--Thus I do not want data to be changed and also I want the table to be linked to base table but the data does not need to be updated 
+--constantly
+--so I chose a materialized view
 drop materialized view shipview2;
  
  create materialized view shipview2 
