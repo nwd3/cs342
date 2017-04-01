@@ -64,7 +64,7 @@ SET department_name = 'Administration'
 WHERE department_name = 'Bean Counting';
 
 --c
---you can't insert into materialized views
+--you can't insert/update a materialized views
 Update DeptView2
 SET first_name = 'Manuel'
 WHERE first_name = 'Jose Manuel' ;		
