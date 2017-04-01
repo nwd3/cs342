@@ -1,30 +1,39 @@
---Exercise 7.2
 
-create Materialized view birthday_czar7 (a,b,c,d,e,f)
+--Exercise 7.2
+drop materialized view birthday_czar8;
+create Materialized view birthday_czar8
 	build immediate
 	refresh force
 	on demand
-As SELECT p.firstName, p.lastName, p.birthdate, p.id, p.title, p.membershipStatus
-	From person p;
+As SELECT firstName, lastName, birthdate, id, title, membershipStatus
+	From person;
 --7.2a
 
- select bc.a
-from birthday_czar7 bc
-where bc.c between '01-JAN-61' and '31-DEC-75';
+ select firstName
+from birthday_czar8
+where birthdate between '01-JAN-61' and '31-DEC-75';
 
+--7.2b
 
 UPDATE Person
 SET birthdate = NULL
-WHERE id = 144;
+WHERE id =0;
 
-commit;
+--This still displays Keith Vanderlinden in the select from materialized view even though 
+--I just updated the record.  This is because a materialized view only refreshes from the base table when you want it to refresh
+ select firstName
+from birthday_czar8
+where birthdate between '01-JAN-61' and '31-DEC-75';
 
- select bc.a
-from birthday_czar7 bc
-where bc.c between '01-JAN-61' and '31-DEC-75';
-drop materialized view birthday_czar7;
---A materialized view makes a copy of the existing table and then refreshes the view 
---thus anything written to the existing table will be overwritten
---Even If I drop the view It does not update the output for example the select statement above
---these comments does not update the records
---Thus For example Cindy is displayed even though I changed her birthdate to null
+--c
+-- can't do this because you can't insert into a materialized table
+--oracle won't allow you to do this unless you 
+--create a log etc
+--ORA-01732:data manipulation operation not legal on this view
+insert into birthday_czar8 
+Values( 'Lance', 'Hilkensien', '01-OCT-1997',1111,'manager','m');
+
+
+--d
+--dropping the materialized view refreshes the materialized view and eliminates Keith Vanderlinden
+--from displaying
