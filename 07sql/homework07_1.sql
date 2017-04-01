@@ -64,13 +64,16 @@ SET department_name = 'Administration'
 WHERE department_name = 'Bean Counting';
 
 --c
---you can't insert/update a materialized views
+--you can't insert/update a materialized views oracle won't allow you to do this unless you 
+--create a log etc
 Update DeptView2
 SET first_name = 'Manuel'
 WHERE first_name = 'Jose Manuel' ;		
 
 
 --d can't do this because you can't insert into a materialized table
+--oracle won't allow you to do this unless you 
+--create a log etc
 insert into DeptView2 
 Values(9000, 'Lance', 'Hilkensien', 'lande@gmail.com', '01-OCT-1997','01-OCT-1997');
 
