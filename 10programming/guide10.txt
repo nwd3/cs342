@@ -1,0 +1,98 @@
+Guide 10 
+Nathanael Dick
+CS 342
+April 7, 2017
+
+Sections 20.1-20.4.1 & 20.6 — Explain the following.
+	a. interleaving vs. parallelism
+		"If the computer system has multiple hardware processors (CPUs), parallel processing
+	of multiple processes is possible...
+	Most of the theory concerning concurrency control in databases is developed in terms
+	of interleaved concurrency"
+
+	b. the lost update and dirty read problems
+	The Lost Update Problem:
+		"This problem occurs when two transactions that access the same databaseitems have their operations
+		interleavend in a way that makes the value of  some database items incorrect."
+
+	"The Temporary Update (or Dirty Read) Problem. This problem occurs when one
+		transaction updates a database item and then the transaction fails for some reason (see
+		Section 20.1.4). Meanwhile, the updated item is accessed (read) by another transaction
+		before it is changed back (or rolled back) to its original value."
+
+	c. transactions, including commits and rollbacks
+		"A transaction is an atomic unit of work that should either be completed in its entirety
+	or not done at all."
+		
+	commit transaction: "this signals a succesful end of the transaction so that any changes (updates)
+	executed by the transaction can be safely committed to the database and will not be undone."
+
+	rollback: "(or ABORT). This signals that the transaction has ended unsuccessfully, so that any
+	changes or  effects that the transaction  may have applied to the databasemust be undone."
+
+	d. the ACID properties
+
+		-- Atomicity. A transaction is an atomic unit of processing; it should either be
+		performed in its entirety or not performed at all.
+
+		-- Consistency preservation. A transaction should be consistency preserving,
+		meaning that if it is completely executed from beginning to end without
+		interference from other transactions, it should take the database from one
+		consistent state to another.
+
+		--Isolation. A transaction should appear as though it is being executed in isolation
+		from other transactions, even though many transactions are executing
+		concurrently. That is, the execution of a transaction should not be
+		interfered with by any other transactions executing concurrently.
+
+		-- Durability or permanency. The changes applied to the database by a committed
+		transaction must persist in the database. These changes must not be
+		lost because of any failure.
+		 
+	e. schedule
+		"A schedule (or history) S of n transactions T1, T2, ... , Tn is an ordering of the operations
+		of the transactions."
+
+2. Chapter 21 introduction and Section 21.1 — Explain the following.
+
+	a. lock
+		"A lock is a variable associated with a data item that describes the status of the item
+		with respect to possible operations that can be applied to it."
+
+	b. two-phase locking
+		"Binary lock can have two states or values: locked and unlocked..that is, no interleaving
+		should be allowed once a lock or unlock operation is started until the operation
+		terminates or the transaction waits."
+
+3.Review Oracle’s Overview of Transaction Processing in PL/SQL (only; you can skip the other sections on this page) — Compare and contrast the following.
+
+	a. SAVEPOINT, COMMIT vs ROLLBACK [TO]
+		"The COMMIT statement ends the current transaction, making any changes made during that 
+		transaction permanent, and visible to other users. Transactions are not tied to PL/SQL 
+		BEGIN-END blocks. A block can contain multiple transactions, and a transaction can span 
+		multiple blocks."(rf1)
+
+		"The ROLLBACK statement ends the current transaction and undoes any changes made during
+		that transaction. If you make a mistake, such as deleting the wrong row from a table, 
+		a rollback restores the original data. If you cannot finish a transaction because an 
+		exception is raised or a SQL statement fails, a rollback lets you take corrective action
+		and perhaps start over."(rf1)
+		
+		"SAVEPOINT names and marks the current point in the processing of a transaction. 
+		Savepoints let you roll back part of a transaction instead of the whole transaction. 
+		The number of active savepoints for each session is unlimited."(rf1)
+	
+	b. LOCK TABLE vs. FOR UPDATE
+	Lock Table
+		"With the LOCK TABLE statement, you can explicitly lock entire tables."(rf1)
+		
+	The for update:
+		"When you declare a cursor that will be referenced in the CURRENT OF clause of an UPDATE or DELETE statement,
+		you must use the FOR UPDATE clause to acquire exclusive row locks. An example follows:"(rf1)
+		"With the SELECT FOR UPDATE statement, you can explicitly lock specific rows of a table to
+		make sure they do not change after you have read them. That way, you can check which or
+		how many rows will be affected by an UPDATE or DELETE statement before issuing the
+		statement, and no other application can change the rows in the meantime."(rf1)
+	
+	
+	rf1: https://docs.oracle.com/cd/B19306_01/appdev.102/b14261/sqloperations.htm#i7105
