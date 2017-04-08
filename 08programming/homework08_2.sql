@@ -1,4 +1,4 @@
---Homework08_2
+--Homework08_2 
 --Nathanael Dick
 --Calculates the Bacon Number based on a given actor	
 	
