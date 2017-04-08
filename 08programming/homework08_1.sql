@@ -12,6 +12,7 @@ modifiedRank number
 
 --note references above pretty detailed in how you implement a column update 
 --so i used their examples
+--in fact the code below is very similar to the code found in the references above as I found a very similar example online
  create or replace trigger auditing after update of rank on movie 
 	for each row
 	BEGIN
