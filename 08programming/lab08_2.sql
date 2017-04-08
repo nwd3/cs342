@@ -1,4 +1,5 @@
  --Lab08
+ --For homework
 --Nathanael Dick
 --March 31
 
@@ -23,13 +24,13 @@ Begin
 				VALUES (nout.sequelid, nOut.name);
 			getSequels(nOut.sequelid);
 		else
-			dbms_output.put_line('There are no more seqels for this movie');
+			dbms_output.put_line( 'There are no more seqels for this movie: ' || nOut.id);
 		end if;
 	END LOOP;
 END;
 /
 
--- Get the sequels for Ocean's 12, i.e., 3 of them.
+-- Get the sequels for Ocean's 11.
 BEGIN  getSequels(238072);  END;
 /
 SELECT * FROM SequelsTemp3;
