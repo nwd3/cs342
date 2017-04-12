@@ -1,0 +1,20 @@
+SQL> select year from movie where id = 238071;
+
+      YEAR                                                                      
+----------                                                                      
+      2103                                                                      
+
+SQL> update movie
+  2  set year = year +10
+  3  where id =238071;
+
+1 row updated.
+
+Commit complete.
+SQL> select year from movie where id = 238071;
+
+      YEAR                                                                      
+----------                                                                      
+      2113                                                                      
+
+SQL> spool off;

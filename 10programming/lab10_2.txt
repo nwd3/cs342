@@ -1,0 +1,56 @@
+SQL> select year from movie where id = 238071;
+
+      YEAR                                                                      
+----------                                                                      
+      2083                                                                      
+
+SQL> select year from movie where id = 238071;
+
+      YEAR                                                                      
+----------                                                                      
+      2083                                                                      
+
+SQL> select year from movie where id = 238071;
+
+      YEAR                                                                      
+----------                                                                      
+      2083                                                                      
+
+SQL> set autocommit on;
+SQL> select year from movie where id = 238071;
+
+      YEAR                                                                      
+----------                                                                      
+      2083                                                                      
+
+SQL> select year from movie where id = 238071;
+
+      YEAR                                                                      
+----------                                                                      
+      2083                                                                      
+
+SQL> commit;
+
+Commit complete.
+
+SQL> set autocommit on;
+SQL> select year from movie where id = 238071;
+
+      YEAR                                                                      
+----------                                                                      
+      2083                                                                      
+
+SQL> update movie
+  2  set year = year +10
+  3  where id =238071;
+
+1 row updated.
+
+Commit complete.
+SQL> select year from movie where id = 238071;
+
+      YEAR                                                                      
+----------                                                                      
+      2103                                                                      
+
+SQL> spool off;
