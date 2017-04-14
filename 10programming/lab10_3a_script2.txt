@@ -1,0 +1,28 @@
+SQL> SELECT RANK FROM MOVIE WHERE ID = 238071;
+
+      RANK                                                                      
+----------                                                                      
+      17.5                                                                      
+
+SQL> lock table movie
+  2  in share mode;  -- once the other table is done now this thread locks the table
+
+Table(s) Locked.
+
+
+SQL> 
+SQL> 
+SQL> 
+SQL> update movie
+  2  set rank = rank +7
+  3  where id = 238071;
+
+1 row updated.
+
+SQL> SELECT RANK FROM MOVIE WHERE ID = 238071;
+
+      RANK                                                                      
+----------                                                                      
+      25.5                                                                      
+
+SQL> spool off;

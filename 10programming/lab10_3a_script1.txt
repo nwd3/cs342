@@ -1,0 +1,29 @@
+SQL> select rank from movie where id =238071;
+
+      RANK                                                                      
+----------                                                                      
+      17.5                                                                      
+
+SQL> LOCK table movie
+  2  in share mode;
+
+Table(s) Locked.
+
+SQL> update movie
+  2  set rank = rank +1
+  3  where id = 238071;
+
+1 row updated.
+
+SQL> commit;  -- ran commit here to unlock the table and allow the other thread to lock 
+and update the table
+
+Commit complete.
+
+SQL> select rank from movie where id =238071;
+
+      RANK                                                                      
+----------                                                                      
+      18.5                                                                      
+
+SQL> spool off;

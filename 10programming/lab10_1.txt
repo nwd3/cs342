@@ -1,0 +1,37 @@
+Lab 10 
+Exercise 10.1
+--Some of my code to do the experimental exercise
+
+select * from movie;
+delete from movie where id =238071;
+select * from movie;
+INSERT INTO Movie VALUES (238071,'Ocean''s 11',1960,8.5,238072);
+select * from Movie;
+INSERT INTO Movie VALUES (2380712222,'Ocean''s 11',1960,8.5,238072);
+select * from Movie;
+commit;
+a.
+
+When I added something to the Movie table the other session did not get it until I closed the 
+session I added it from and then the other session picked up the new record
+or if I closed out of the session in which I did not update the record and restarted it also picked up the new record
+
+b.
+
+Using START-TRANSACTION/SAVEPOINT/ROLLBACK/COMMIT you 
+can ensure some of the acid-properties.
+
+		 "Commit ends the current transaction, making any changes made during that transaction permanent, and visible to other users. "
+		 This ensures the ACID property: durability or permanency by making the data permanent in the database
+		 
+		 start-transaction will ensure the acid-property of isolation
+		 by allowing you to specify if you want to read or write on the database.
+		 
+		 Save-point and rollback can allow us to preserve consistency preservation by allowing
+		 us to rollback our changes if the state of the database is not what it should have been
+		 and if it is then allows us to commit our changes using commit.
+		 
+		 I believe atomicity really only completely comes with locking the tables because you could think
+		 a value is something and then the user changes it on you.
+		
+		Reference:https://docs.oracle.com/cd/B19306_01/appdev.102/b14261/sqloperations.htm#i7105
