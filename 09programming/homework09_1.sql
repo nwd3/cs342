@@ -6,19 +6,21 @@ SET AUTOTRACE ON;
 SET SERVEROUTPUT ON;
 SET TIMING ON;
 SET WRAP OFF;
+
+
 --Start of Query 1
-/*  select m.name, m.id 
+select m.name, m.id 
 from Movie m, Director d, MovieDirector md
 where d.lastName='Eastwood'
 and d.firstName = 'Clint'
 and md.DirectorId = d.id 
-and m.id = md.movieId; */
+and m.id = md.movieId;
 --Explanation for query 1:
 --1.
 --I could have done it the using a subselect or by choosing the first name first in the
 --where clause but not using the subselect is faster because you don't do two select 
 --statements. Specifying the lastName first I believe may speed up the implementation because
---there are more people with Clint as the first name then with eastwood as the lastName.
+--there are more people with Clint as the first name then with eastwood as the lastName. 
 	--my alternate implementations
 --select m.name, m.id 
 --from Movie m,Director d
@@ -48,7 +50,7 @@ and m.id = md.movieId; */
 --I made sure that the lastName was selected first which limits directors by quite a bit.
 
 --Start of Query 2
-/* CREATE MATERIALIZED VIEW testview
+CREATE MATERIALIZED VIEW testview
   BUILD Immediate
   REFRESH COMPLETE
   AS
@@ -56,7 +58,7 @@ and m.id = md.movieId; */
 from movieDirector md, director d 
 where md.directorId = d.id
 group by d.firstName, d.lastName having count(md.movieId)>200;
-select * from testview; */
+select * from testview;
 
 --Explanation for query 2
 
