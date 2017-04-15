@@ -80,7 +80,7 @@ group by d.firstName, d.lastName having count(md.movieId)>200; */
 
 --2.
 --The view I chose does not use any indexes because it is make a full access to the the materialized view.  This makes sense because of how
---my select statement is set up.
+--my select statement is set up.  I could have made my own index (directorid and movieid) but I decided to leave it as a hash join instead of implementing my own index.
 
 --3
 --I attempted to ensure the accesses were eliminated for example the materialized view allows me to only have two accesses compared to 
