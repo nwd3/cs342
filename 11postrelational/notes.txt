@@ -1,0 +1,65 @@
+Run the Intellij IDEA J2EE tutorial: Developing a Java EE Application. Note the following as you go through the tutorial sections, saving answers to the questions in a notes.txt file in the root of your new project structure.
+
+Before you start — The lab has all the tools required for the tutorial.
+
+Intellij IDEA — Find this under the Windows start menu.
+Java 8 — C:\Program Files\Java\jdk1.8.build#
+GlassFish 4.1 — C:\glassfish-4.1-web\glassfish4
+Creating a Project — Name your project Lab11 and store it in your class repo under cs342/11postrelational/Lab11/. This allows you to commit/push the full application as part of your course repo but also edit it individually using Intellij IDEA.
+
+Exploring the project structure — How do the external libraries (in the project pane) relate to J2SE and J2EE?
+the j2ee is java ++ the glassfish-4 server
+j2se the java source code
+Developing source code — Set the HTML title and body content to whatever you’d like. At what tier does this application run?
+the web tier
+Running the application &
+Modifying the code and observing the changes — What server does this step use to serve up your application? For a hint, look at what’s served up at the URL: /. How does it compare with a typical web server?
+the step uses the local host server it just uses the local host ports 8080 as compared to a regualar web server that uses its ports
+
+Exploring a run configuration &
+Exploring an artifact configuration — Skim through these sections, making sure that you can find the application features they discuss. What is a WAR file?
+a war file is a decompressed web application archive
+
+Packaging the application into a WAR file &
+Deploying an artifact onto a running server — Here, we run the app on a GlassFish server running on the local machine, called a “remote” server because it’s running outside of Intellij IDEA. Start the server as follows.
+
+Stop any GlassFish server you might still have running in Intellij.
+Run C:\glassfish-4.1-web\glassfish4\glassfish\bin\asadmin.bat and run the server command start-domain. You can stop it later using stop-domain.
+Visit the Glassfish administration console here: http://localhost:4848/ and make sure that you can find:
+your running application (under “Applications”).
+the server log (under “Monitoring Data”).
+You should now have a GlassFish server running to which Intellij can (“remotely”) deploy your WAR. What’s the difference between “exploded” and non-exploded WAR files?
+an exploded war file is one where you use a local folder with a war/ear file inside
+non-exploded means that you are "deploying a WAR/EAR" file to your application server"
+http://stackoverflow.com/questions/1289358/what-does-exploded-development-mean-in-java
+
+Packaging the application into an EAR: Using Java EE Application support & 
+Looking at other features (tool windows and facets) — Skim these sections but don’t implement them. Compare and contrast EAR and WAR artifacts.
+ear "is a file format used by Java EE for packaging one or more modules into a single archive so that the deployment of the various modules onto
+ an application server happens simultaneously and coherently. It also contains XML files called deployment descriptors which describe how to deploy the modules."
+ ref above:https://en.wikipedia.org/wiki/EAR_(file_format)
+war "JAR file used to distribute a collection of JavaServer Pages, Java Servlets, Java classes, XML files, tag libraries, static web pages 
+(HTML and related files) and other resources that together constitute a web application."
+ref above:https://en.wikipedia.org/wiki/WAR_(file_format)
+Save this new application to the your course repo by Git-adding the application source files (i.e., the files in the root folder and those in the .idea/, src/ and web/, but not out/, sub-directories) and git-commit/pushing them.
+
+Exercise 11.2
+
+Run the Intellij IDEA REST tutorial: Creating and Running Your First RESTful Web Service on GlassFish Application Server. Note the following as you go through the tutorial sections, saving the answers to the questions in your existing notes.txt file.
+
+Before you start
+Configuring the GlassFish server in IntelliJ IDEA
+Configuring the JDK
+Creating a project &
+Exploring the project structure — These steps are mostly done already, but you must do the following to add JAX-RS/REST to your project.
+
+On the Settings→Application Servers→Additional Libraries for Servers pane, check “RESTful Web Service” (if it isn’t already checked).
+Check to make sure that “GlassFish 4.1 - RESTful Web Service” is listed as an “External Library”. If it isn’t, go to the Project Structure→Modules→Dependencies pane and add a new Library→Application Server Libraries→GlassFish 4.* - RESTful Web Service.
+Developing source code
+Examining the generated artifact configuration
+Exploring and completing the run configuration &
+Running the application — Do these steps as written. The application should run either locally or remotely. Modify it to support the URL /hello 
+(rather than /helloworld). Note that you’ll need to stop the “remote” server (using stop-domain, see above) before deploying “locally” in Intellij. 
+What library does this application use for REST support?
+
+Git-add the new source files and git-commit/push the updated application.
