@@ -172,9 +172,8 @@ select * from shipview;
 
 --I made this view specific for the employee that does the packaging another employee takes care
 	--of updating the shipping status and I  add that view as a non-materialized view as seen above
---Thus I do not want data to be changed and also I want the table to be linked to base table but the data does not need to be updated 
---constantly
---so I chose a materialized view
+--Thus I do not want data to be changed and also I want the table to be linked to base table
+--so I chose materialized view
 drop materialized view shipview2;
  
  create materialized view shipview2 
@@ -200,4 +199,8 @@ create or replace view PartsInStock
 	select * from part;
 	
 select * from PartsInStock;
-
+--I added this view to help me with my procedures this 
+--gets the current count of orders my employees are working on
+create or replace view empOpView
+as select employee_number, count(employee_number) ad from orders
+group by employee_number order by count(employee_number) asc;
