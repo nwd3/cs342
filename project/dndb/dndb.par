@@ -1,0 +1,4 @@
+DIRECTORY=exp_dir
+DUMPFILE=dndb.dmp 
+LOGFILE=dndb.log
+TABLES=dndb.employees,dndb.part,dndb.customer,dndb.orders,dndb.partorder,dndb.Feedback,dndb.reviews

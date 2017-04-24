@@ -1,0 +1,25 @@
+;;; 
+Export: Release 11.2.0.2.0 - Production on Mon Apr 24 13:10:21 2017
+
+Copyright (c) 1982, 2009, Oracle and/or its affiliates.  All rights reserved.
+;;; 
+Connected to: Oracle Database 11g Express Edition Release 11.2.0.2.0 - 64bit Production
+Starting "DNDB"."SYS_EXPORT_TABLE_01":  dndb/******** parfile=dndb.par 
+Estimate in progress using BLOCKS method...
+Processing object type TABLE_EXPORT/TABLE/TABLE_DATA
+Total estimation using BLOCKS method: 704 KB
+Processing object type TABLE_EXPORT/TABLE/TABLE
+Processing object type TABLE_EXPORT/TABLE/CONSTRAINT/CONSTRAINT
+Processing object type TABLE_EXPORT/TABLE/CONSTRAINT/REF_CONSTRAINT
+. . exported "DNDB"."CUSTOMER"                           216.6 KB     103 rows
+. . exported "DNDB"."EMPLOYEES"                          6.429 KB       4 rows
+. . exported "DNDB"."FEEDBACK"                           6.375 KB       4 rows
+. . exported "DNDB"."ORDERS"                             12.51 KB     109 rows
+. . exported "DNDB"."PART"                               7.507 KB      11 rows
+. . exported "DNDB"."PARTORDER"                          7.171 KB     104 rows
+. . exported "DNDB"."REVIEWS"                            6.328 KB       3 rows
+Master table "DNDB"."SYS_EXPORT_TABLE_01" successfully loaded/unloaded
+******************************************************************************
+Dump file set for DNDB.SYS_EXPORT_TABLE_01 is:
+  C:\PROJECTS\DNDB\DNDB.DMP
+Job "DNDB"."SYS_EXPORT_TABLE_01" successfully completed at 13:10:24

@@ -7,17 +7,25 @@ GRANT
 	CONNECT,
 	CREATE TABLE,
 	CREATE SESSION,
+	CREATE ANY DIRECTORY,
+	DROP ANY DIRECTORY,
 	CREATE SEQUENCE,
 	CREATE VIEW,
 	CREATE MATERIALIZED VIEW,
 	CREATE PROCEDURE,
 	CREATE TRIGGER,
+	PLUSTRACE,
 	UNLIMITED TABLESPACE
 	TO dndb;
 
 -- Connect to the user's account/schema.
-CONNECT dndb/gh;
 
+DROP DIRECTORY exp_dir;
+CREATE DIRECTORY exp_dir AS 'C:\projects\dndb';
+GRANT READ, WRITE ON DIRECTORY exp_dir to dndb;
 -- (Re)Create the database.
-DEFINE dndb=C:\Users\nwd3_000\Documents\Spring2017\CS342\project\dndb
+
+--@&dndb\load
+CONNECT dndb/gh;
+ DEFINE dndb=C:\projects\dndb
 @&dndb\load
