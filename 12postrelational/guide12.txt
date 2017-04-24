@@ -67,3 +67,6 @@ Detached vs Managed
 Persist
 Merge
 Remove
+
+Part 2
+see screenshot in the 12postrelational directory
