@@ -1,3 +1,5 @@
+--Guide 12
+--quoted others
 Work through the following materials this week:
 
 Read specified sections of Java Persistence and explain the given concepts.
@@ -61,6 +63,11 @@ The EntityManager provides API for creating queries, accessing transactions, and
  The JPA API can be used in any Java environment including JSE and JEE."
 
 Injection — We’ll use J2EE dependency injection to access to a container-managed EntityManager (Chapter 6 overview).
+"JPA provides a runtime API defined by the javax.persistence package. The main runtime class is the EntityManager class. The EntityManager provides API for creating queries, accessing transactions, and finding, persisting, merging and deleting objects. The JPA API can be used in any Java environment including JSE and JEE.
+
+An EntityManager can be created through an EntityManagerFactory, or can be injected into an instance variable in an EJB SessionBean, or can be looked up in JNDI in a JEE server.
+
+JPA is used differently in Java Standard Edition (JSE) versus Java Enterprise Edition (JEE)."
 
 Persistence operations — Name the four basic persistence operations (Section 6.2).
 Detached vs Managed
