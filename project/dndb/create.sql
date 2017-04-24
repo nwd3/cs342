@@ -21,11 +21,11 @@ GRANT
 -- Connect to the user's account/schema.
 
 DROP DIRECTORY exp_dir;
-CREATE DIRECTORY exp_dir AS 'C:\projects\dndb';
+CREATE DIRECTORY exp_dir AS 'C:\Users\nwd3_000\Documents\Spring2017\CS342\project\dndb';
 GRANT READ, WRITE ON DIRECTORY exp_dir to dndb;
 -- (Re)Create the database.
 
 --@&dndb\load
 CONNECT dndb/gh;
- DEFINE dndb=C:\projects\dndb
+ DEFINE dndb=C:\Users\nwd3_000\Documents\Spring2017\CS342\project\dndb
 @&dndb\load

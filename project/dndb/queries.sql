@@ -3,6 +3,20 @@
 --Note: I updated the database, vision statement, erd, added a lot more data, added constraints, and addressed comments you made 
 --when grading project 2.
 
+--Note: I updated the database, vision statement and addressed comments you made 
+--when grading project 3.
+--This is the updated query that I updated project 4 to include the missing outer iner join combo
+select distinct e.firstName, c.firstName, c.lastName, o.order_num, po.part_num, f.feedback
+from employees e
+	inner join orders o 
+		on o.employee_number=e.employee_number 
+		and e.firstName='Nathanael'
+	outer join partorder po 
+		on po.order_num=o.order_num
+	inner join customer c 
+		on o.cust_num = c.cust_num
+	 join feedback f 
+		on f.cust_num=c.cust_num;
 --this query gets information about the feedback based on the partnumber
 --and the employee
 --this can be valuable to determine what feedback I might get on a part

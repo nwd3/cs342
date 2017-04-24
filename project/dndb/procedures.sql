@@ -2,6 +2,10 @@
 --this procedure drives the procedure that inserts the 
 --actors and their bacon numbers into the baconTable
 --my idea is to create a transaction procedure
+--I tried to make the queries complex as possible but I mostly focused on making them useful
+--Which I believe I accomplished.  Now inserting customers etc into the database is vastly easier
+--and the procedure does all the work
+--Note I tested these procedures on the bottom
 
 --these are all helper functions
 CREATE or replace FUNCTION nextCN RETURN INTEGER AS
@@ -45,14 +49,13 @@ End;
 --note see triggers to see that the parts available are checked to see if we need to order more parts
 CREATE OR REPLACE PROCEDURE AddToOrder(nextONR in integer, partnameIn in part.part_name%type,quanityIn in integer)
 as 
-PartId integer;
-custNUM integer;
+	PartId integer;
+	custNUM integer;
 begin 
 	select cust_num into custNUM from orders where nextONR = order_num;
-
 	insert into partorder values (PartId,nextONR,quanityIn);
-updatePartTableOnOrder(getPartId(partnameIN),quanityIn);
-dbms_output.put_line( 'You have added to order number: ' || nextONR || 'for customer ' || custNUM || 'To add more to this order you can run the AddToOrder Procedure again.' );
+	updatePartTableOnOrder(getPartId(partnameIN),quanityIn);
+	dbms_output.put_line( 'You have added to order number: ' || nextONR || 'for customer ' || custNUM || 'To add more to this order you can run the AddToOrder Procedure again.' );
 end;
 /
 
@@ -61,18 +64,19 @@ end;
 CREATE OR REPLACE PROCEDURE updatePartTableOnOrder(partId in part.part_num%type, quanityIn in part.quantity%type)
 as
 Begin
-update part
-	set quantity = quantity - quanityIn
-	where part_num = PartId;
+	update part
+		set quantity = quantity - quanityIn
+		where part_num = PartId;
 End;
 /
+
 --this updates the part table when a new shipment of parts has arrived
 CREATE OR REPLACE PROCEDURE updatePartTableOnNew(partId in part.part_num%type, quanityIn in part.quantity%type)
 as
 Begin
-update part
-	set quantity = quantity + quanityIn
-	where part_num = PartId;
+	update part
+		set quantity = quantity + quanityIn
+		where part_num = PartId;
 End;
 /
 
@@ -96,8 +100,8 @@ CREATE OR REPLACE PROCEDURE ADDCUSTOMERAndOrder(firstNameIN in customer.firstNam
 	nextCNR integer;
 	pid integer;
 Begin
-nextCNR := nextCN();
-INSERT INTO customer
+	nextCNR := nextCN();
+	INSERT INTO customer
 				VALUES (nextCNR,firstNameIn, lastnameIn,
 				email_addressIn,
 				shipping_AddressIn,
@@ -112,7 +116,8 @@ INSERT INTO customer
 		nextONR := nextON();
 		insert into orders values (nextONR,sysdate,sysdate + 120/24,'',getOpenEmployee(),nextCNR,num_of_products,8253);
 		updatePartTableOnOrder(getPartId(partnameIN), num_of_products);
-			dbms_output.put_line( 'You have created orderNumber: ' || nextONR || 'for customer ' || nextCNR || 'To add more to this order you can run the AddToOrder Procedure');
+		--output an informative message
+		dbms_output.put_line( 'You have created orderNumber: ' || nextONR || 'for customer ' || nextCNR || 'To add more to this order you can run the AddToOrder Procedure');
 		commit;
 	end if;
 END;
@@ -152,9 +157,9 @@ END;
 CREATE OR REPLACE PROCEDURE shipped(orderNumIn in orders.order_num%type)
 as
 Begin
-update orders
-	set act_ship_date=sysdate
-	where order_num = orderNumIn;
+	update orders
+		set act_ship_date=sysdate
+		where order_num = orderNumIn;
 End;
 /
 

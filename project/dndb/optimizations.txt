@@ -3,11 +3,6 @@ SET AUTOTRACE ON;
 SET SERVEROUTPUT ON;
 SET TIMING ON;
 SET WRAP OFF;
-  create index index1 on partorder (part_num, order_num);
-  
-  
-  create index index4 on orders(order_num,cust_num);
-drop index index1;
 
 --this was my original query 
   select distinct e.firstName, c.firstName, c.lastName, o.order_num, po.part_num, f.feedback
@@ -21,20 +16,21 @@ from employees e
 		on o.cust_num = c.cust_num
 	 join feedback f 
 		on f.cust_num=c.cust_num;
-		--this project I optimized it the following way
-drop index index11;
-  create index index1 on partorder (part_num, order_num);  
+		
+--I then really optimized it the following way
+		drop index index11;
+		create index index1 on partorder (part_num, order_num);  
 		create index index11 on feedback ( cust_num);
 		create index index13 on employees(employee_number, firstName);
 		create index index14 on orders(order_num,cust_num, employee_number);
 	
-		select distinct e.firstName, c.firstName, c.lastName, o.order_num, po.part_num, f.feedback
-from employees e, orders o, partorder po, feedback f,customer c 
-	where e.firstName = 'Nathanael'
-		and e.employee_number = o.employee_number
-		and o.order_num = po.order_num
-		and o.cust_num = c.cust_num
-		and f.cust_num=o.cust_num;
+	select distinct e.firstName, c.firstName, c.lastName, o.order_num, po.part_num, f.feedback
+		from employees e, orders o, partorder po, feedback f,customer c 
+			where e.firstName = 'Nathanael'
+				and e.employee_number = o.employee_number
+				and o.order_num = po.order_num
+				and o.cust_num = c.cust_num
+				and f.cust_num=o.cust_num;
 
 Execution Plan
 ----------------------------------------------------------
@@ -76,20 +72,20 @@ Note
 
    
  Analysis of the Execution Plan Etc:
- Execution Plan:
- Using Indexes on the query
+
+Using Indexes on the query:
 	Originally the execution plan showed an access to the order table with one of the most expensive operations a full access.  This 
  reads every row on the table.  I created an index for the order table to rid the database from having to do
  a full access for the order table.(index14)  
 	Further because of how I access the different tables it is probably necessary to check each order for the correct employee_number. 
- I created an index to access the partorder table(index1) this created a way for the database
- to access the partorder table.  This allows me to optimize accessing the part table with my created index.  I also use a feedback index(index11).  I did not think this 
- would make a differece but it seems to speed up the process considerably. 
+I created an index to access the partorder table(index1) this created a way for the database
+to access the partorder table.  This allows me to optimize accessing the part table with my created index.  I also use a feedback index(index11).  I did not think this 
+would make a differece but it seems to speed up the process considerably. 
+  	The execution also uses the SYS_C0013938 index which checks fro the uniqueness in the inedex.  
+The other accesses how it joins the table and the loops are as efficient as I could think of making them.  Adding the indexes lessened some of the operations on the database(13 before now only 12).  Also
+it only made 2 tables access more than 1 row which was different than before.
   
-		The execution also uses the SYS_C0013938 index which checks fro the uniqueness in the inedex.  
- The other accesses how it joins the table and the loops are as efficient as I could think of making them.  Adding the indexes lessened some of the operations on the database.
-   
-   Ways I optimized the query 
-	I changed the query from the original one by accessing the tables in such a way that I attempted to force the database to only access data it needed for the result.  FOR
-  example I specified the employees firstName right away to rid any unecessary accesse to the employee table.  I also changed 	the last line 'and f.cust_num=c.cust_num;' to 	'and f.cust_num=o.cust_num;'
-  this made use of the already accesed order number.
+Ways I optimized the query:
+	I changed the query from the original one by accessing the tables in such a way that I attempted to force the database to only access data it needed for the result.  For
+example I specified the employees firstName right away to rid any unecessary accesse to the employee table.  I also changed the last line 'and f.cust_num=c.cust_num;' to 	'and f.cust_num=o.cust_num;'
+this made use of the already accesed order number.
