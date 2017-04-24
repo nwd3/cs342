@@ -1,0 +1,69 @@
+Work through the following materials this week:
+
+Read specified sections of Java Persistence and explain the given concepts.
+
+Chapter 3, “What is Java persistence?”
+"storing anything to any level of persistence using the Java programming language, "
+Persistence in Java and how it relates to the impedance mismatch discussed in unit 8
+" a set of conceptual and technical difficulties that are often encountered when a relational database management system (RDBMS) 
+is being served by an application program (or multiple application programs) written in an 
+object-oriented programming language or style, particularly because objects or class definitions must be mapped to database
+ tables defined by relational schema."
+POJOs
+
+"
+POJO stands for Plain Old Java Object, and would be used to describe the same things as a "Normal Class" "
+http://stackoverflow.com/questions/12517905/what-is-java-pojo-class-java-bean-normal-class
+Chapter 4, “Persistence Products, Which to Use?” — Name 2–3 of the major JPA implementations and indicate which one we are using in this class.
+
+Hibernate,EclipseLink we are using glassfish
+Chapter 5, “Mapping, Round Pegs into Square Holes” — Annotate this Java class for object-relational mapping using Java Annotations with the property access type.
+@Entity
+@Access(AccessType.FIELD)
+public class Solder {
+ @Id
+ @Column(name="NAME")
+    private String name;
+@Column(name="rank")
+    private String rank;
+@Column(name="serialNumber")
+    private long serialNumber;
+@ManyToOne
+	private Solder commander;
+@ManyToMany
+  private List<Project> Battle;
+ @Access(AccessType.PROPERTY)
+ public Solder getCommander() { return commander; }
+    public String getName() { return name; }
+    public void setName(String name) { this.name = name; }
+
+    public String getRank() { return rank; }
+    public void setRank(String rank) { this.rank = rank; }
+
+    public String getSerialNumber() { return serialNumber; }
+    public void setSerialNumber(String serialNumber) { this.serialNumber = serialNumber; }
+}
+In particular, add annotations for the following.
+
+Persistence Entity — Annotate the class as a persistence entity (Chapter 5 overview).
+OID — Annotate the object ID (Section 5.2).check
+Basic fields — Annotate the non-ID fields (Section 5.6). check
+Relationships — Add new fields/accessors/annotations that exemplify the following JPA relationships (Section 5.7 overview & Sections 5.7.2–5.7.4).
+A many-to-one relationship to a commander — The commander is another Solder object.
+A many-to-many relationship to a Battle class — You don’t need to add the Battle class.
+You don’t need to run this code, but be familiar with the concepts and the annotations that implemen them.
+
+Chapter 6, “Runtime, Doing the Hokey Pokey (EntityManager)”
+
+Entity Manager (Chapter 6 overview)
+"JPA provides a runtime API defined by the javax.persistence package. The main runtime class is the EntityManager class. 
+The EntityManager provides API for creating queries, accessing transactions, and finding, persisting, merging and deleting objects.
+ The JPA API can be used in any Java environment including JSE and JEE."
+
+Injection — We’ll use J2EE dependency injection to access to a container-managed EntityManager (Chapter 6 overview).
+
+Persistence operations — Name the four basic persistence operations (Section 6.2).
+Detached vs Managed
+Persist
+Merge
+Remove
