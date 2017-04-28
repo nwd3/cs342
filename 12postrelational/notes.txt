@@ -1,0 +1,34 @@
+Exercise 12.1
+1.In guide 12 we established a local connection this time we are using the remote connection.  Further we are explicitly using the oracle pool where as in guide 12 we used the default lib.
+I would say we don't necessarily need both but it may depend on the situation where we are querying the oracle database and in what context we are using the interface in.
+
+Exercise 12.2
+1.It creates a mapping file for each table in the database
+2.The pk class is the"name of the primary key column for classes that use datastore identity. 
+This property is not used for classes with application identity. The named column must be of some numeric type, 
+as Kodo JDO uses Java long values for datastore identities."
+ref above:https://docs.oracle.com/cd/E13189_01/kodo/docs341/ref_guide_mapping_classmapping.html
+It makes sure that database integrity is enforced.
+3.We use property access we need to create a gettter and setter for each access.
+ref:http://stackoverflow.com/questions/594597/hibernate-annotations-which-is-better-field-or-property-access
+
+Exercise 12.3
+1."In computer science, marshalling or marshaling is the process of transforming the memory
+ representation of an object to a data format suitable for storage or transmission, and it 
+ is typically used when data must be moved between different parts of a computer program or
+ from one program to another."ref:https://en.wikipedia.org/wiki/Marshalling_(computer_science)
+  So yes we are doing marshaling in this application because we are transforming the data in the oracle
+  table into json format.
+2.We "use dependency injection to access to a container-managed EntityManger
+Yes this code uses injection by using the @override in MyApplication.java and returns the application
+ref:http://www.journaldev.com/2394/java-dependency-injection-design-pattern-example-tutorial
+3.ensures primary keys persistance ?? ref:http://docs.oracle.com/javaee/7/api/javax/persistence/EntityManager.html
+ return em.find(Person.class, id);
+         return em.createQuery(em.getCriteriaBuilder().createQuery(Person.class)).getResultList();
+
+Exercise 12.4
+1.Json gives the identifier that was declared in the person class brackets and then infromation about that 
+specific household or team etc 
+For example this is part of a the output for person 2 
+the household part:
+","personsById":{"city":"Grand Rapids","id":0,"phonenumber":"616-243-5680","state":"MI","street":"2347 Oxford Dr. SE","zipcode":"49506"},"
