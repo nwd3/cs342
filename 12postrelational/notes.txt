@@ -19,12 +19,10 @@ Exercise 12.3
  from one program to another."ref:https://en.wikipedia.org/wiki/Marshalling_(computer_science)
   So yes we are doing marshaling in this application because we are transforming the data in the oracle
   table into json format.
-2.We "use dependency injection to access to a container-managed EntityManger
+2.We "use dependency injection to access to a container-managed EntityManger"(guide) to maintain our person entities.
 Yes this code uses injection by using the @override in MyApplication.java and returns the application
 ref:http://www.journaldev.com/2394/java-dependency-injection-design-pattern-example-tutorial
-3.ensures primary keys persistance ?? ref:http://docs.oracle.com/javaee/7/api/javax/persistence/EntityManager.html
- return em.find(Person.class, id);
-         return em.createQuery(em.getCriteriaBuilder().createQuery(Person.class)).getResultList();
+3.The entity manager creates the entities in our code.  For example it creates the person class with all the properties that the person has.  The entity manager resides in glassfish and maintains these records.
 
 Exercise 12.4
 1.Json gives the identifier that was declared in the person class brackets and then infromation about that 
