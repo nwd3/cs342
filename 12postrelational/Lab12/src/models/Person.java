@@ -150,6 +150,7 @@ public class Person {
         result = 31 * result + (homegrouprole != null ? homegrouprole.hashCode() : 0);
         return result;
     }
+    //note for this one I let Intelliji generate automatic relationships and this was one of them I may have changed it a little
     @ManyToOne
     @JoinColumn(name = "HOUSEHOLDID", referencedColumnName = "ID")
     public Household getPersonsById() {
