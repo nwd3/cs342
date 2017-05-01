@@ -1,0 +1,67 @@
+Guide 13
+CS 342
+Nathanael Dick
+
+1.Read Pramod Sadalage’s NoSQL Databases: An Overview (circa 2012) and explain:
+
+	a.the key motivations for considering non-relational database systems.
+		"Application developers have been frustrated with the impedance mismatch between the relational data structures 
+		and the in-memory data structures of the application. Using NoSQL databases allows developers to develop without 
+		having to convert in-memory structures to relational structures"
+		"There is also movement away from using databases as integration points in favor of encapsulating databases with applications and integrating using services. 
+
+		The rise of the web as a platform also created a vital factor change in data storage as the need to support large volumes of data by running on clusters. 
+
+		Relational databases were not designed to run efficiently on clusters.
+
+		The data storage needs of an ERP application are lot more different than the data storage needs of a Facebook or an Etsy, for example. "
+
+	b.aggregate data models.
+		"An aggregate is a collection of data that we interact with as a unit. These units of data or aggregates form the boundaries for ACID operations with
+		 the database, Key-value, Document, and Column-family databases can all be seen as forms of aggregate-oriented database."
+	c.polyglot persistence.
+		"Not using the relational model
+		Running well on clusters
+		Mostly open-source
+		Built for the 21st century web estates
+		Schema-less"
+	d.the relevance of the CAP theorem.
+		" CAP theorem which states that in any distributed system we can choose only two of consistency, 
+		availability or partition tolerance. Many NoSQL databases try to provide options where the developer has choices 
+		where they can tune the database as per their needs"
+	e.the types of NoSQL databases.
+		1.Key-Value databases-simplest used for api perspective
+		2.Document Databases:documents are main concept
+		3." Column-family databases store data in column
+		 families as rows that have many columns associated with a row key (Figure 10.1)"
+		4."Graph databases allow you to store entities and relationships between these entities. "
+
+	f.when (and when not) to use NoSQL database systems.
+			When:
+			"To improve programmer productivity by using a database that better matches an application's needs.
+			To improve data access performance via some combination of handling larger data volumes, reducing latency, and improving throughput."
+			When Not To Use:
+			When you do not have the above needs
+	g.An alternate source of this basic information is Martin Fowler’s Introduction to NoSQL video.
+
+	2.Use “Getting Started with the Key/Value API”, Chapters 3–5, from the Oracle NoSQL Database documentation as a reference. Be sure to know how to:
+
+		Compare and contrast Major and minor key components.
+		"major key components are used to identify which shard stores a given record."
+		"Key major: email address."
+		"Key minor: various properties, such as the user's street address, phone number, photograph, and name."
+		Use the appropriate commands to write and retrieve records.
+
+Be sure that you can compare and contrast relational data representations with key-value representations. Note that we will not use these higher-level features: the NoSQL Table API (We’ll focus on the lower-level key/value API); the Avro value schema mechanism (We’ll restrict ourselves to simple string values).
+
+	This practical article by Re Lai, Enterprise Application Development Using Oracle NoSQL Database, is also helpful. It includes some material that we don't care about (i.e., NetBeans, UML, Avro value-handling) but the following sections are useful for the homework. Skim them now and be prepared to reference them later as needed.
+
+		a.“Represent Key-Value Pairs” — Designing keys
+		"Oracle NoSQL Database stores data as key-value pair"
+		b.“CRUD” — Implementing the standard persistent data operations:
+		"Create, read, update and delete (CRUD) operations are fully supported. "
+		c.“Composite Keys” — Designing multi-element keys:
+		" It frees us from resorting to String concatenation to create compound keys. More importantly, it turns out to be a versatile modeling tool."
+		d.“Model Entities” — Modeling relational records in a KV store:"Entities can generally be modeled in two ways in Oracle NoSQL Database: structured values and name-value pairs."
+		e.“Model Secondary Indexes” — Storing and retrieving sorted data"Relational databases (RDBMS) rely on indexes to speed up queries. For example, to expedite the retrieval of the latest ten blogs, RDBMS creates a composite index to sort the blog IDs by time. This is sometimes referred to as a secondary index, as opposite to the primary key."
+		f.“Model Multi-values and Relationships” — Modeling foreign key relationships"Multi-values are everywhere. For example, a blogger can have many blogs, followed by many followers. They manifest an underneath relationship of multiplicity: one-to-many and many-to-many relationship. Most of us first learn relationships from SQL, but the concept itself is universal."
