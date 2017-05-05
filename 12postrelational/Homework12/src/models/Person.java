@@ -116,6 +116,12 @@ public class Person {
     public void setHomegrouprole(String homegrouprole) {
         this.homegrouprole = homegrouprole;
     }
+    //this is as far as i got i
+    @Transient
+public  void setHID(long hid){
+    
+   // setPersonsById(hid);
+}
 
     @Override
     public boolean equals(Object o) {
