@@ -2,20 +2,39 @@
 
 Exercise 13.1
 a.
-Store.put stores the "key-value record in the Oracle NoSQL database using the put(Key key, Value value) method in KVStore" the record 
-is stored in a "single document file" where as (http://www.toadworld.com/platforms/oracle/w/wiki/10894.storing-json-in-oracle-nosql-database-using-avro-schemas,  https://www.upwork.com/hiring/data/sql-vs-nosql-databases-whats-the-difference/)
-em.persists stored the record int the oracle sql database this database is structured using tables the data is stored as a record in the table.
-b.The myHashTable.put() " implements a hash table, which maps keys to values. Any non-null object can be used as a key or as a value.
-To successfully store and retrieve objects from a hashtable, the objects used as keys must implement the hashCode method and the equals method."(https://docs.oracle.com/javase/7/docs/api/java/util/Hashtable.html)
-this method uses a hash table to map the data
+  1.store.put(): Puts the values that were created in the key into the stores associative array where it stores the keys.ref4
+
+  2.em.persists1:Makes a record that is "managed and persistent"(refc) 
+  
+  3.Both em.persists and store.put both update a record or create a new record if it doesn't exist.
+ 
+  4.store.put stores the data as a key value pair while the database stores the data in a table.
+
+b.
+  1.The myHashTable.put() " implements a hash table, which maps keys to values. Any non-null object can be used as a key or as a value.
+  To successfully store and retrieve objects from a hashtable, the objects used as keys must implement the hashCode method and the          equals method."ref1
+  2. store.put(): Puts the values that were created in the key into the stores associative array where it stores the keys.ref4  The value is stored in key value pairs which is similar to the mapping of keys to a value implemented by the myHashTable.put commands.
 
 Exercise 13.2
-b.database keys: Database keys are well structured,identify a record and are stored differently than in a nosql key/
+a.
+database keys: Relational database keys allow the linking of "tables with keys that allows for the logical representation of information relational databases provide. Each table has a primary key that uniquely identifies tuples in that table. By including a primary key from one table in another a foreign key is implemented, joining the two tables, creating a relationship." (ref2)
+
 nosql keys:"can be thought of as a single record in a database, where the key is used to locate the value. Both the key and the value 
-are application-defined, given some loose restrictions imposed by Oracle NoSQL Database."
-kvkeys are split into minor and major keys(https://docs.oracle.com/cd/E26161_02/html/GettingStartedGuide/schema.html)
+are application-defined, given some loose restrictions imposed by Oracle NoSQL Database." ref3
+"Key-value (KV) stores use the associative array (also known as a map or dictionary) as their fundamental data model. In this model, data is represented as a collection of key-value pairs, such that each possible key appears at most once in the collection."ref4
+
 
 Exercise 13.3
 a.
-You might generate a mapping that maps a specific key to another specific key
-b.Say you are creating a database that contains shipping records and there is a date field for actual ship date this might be null at first to be changed at a later date.
+You might generate a mapping that maps a specific key to another specific key.  This would allow two tables to be joined based on the value of the key you mapped.
+
+b.
+Say you are creating a database that contains shipping records and there is a date field for actual ship date this might be null at first to be changed at a later date.
+
+
+refa:(http://www.toadworld.com/platforms/oracle/w/wiki/10894.storing-json-in-oracle-nosql-database-using-avro-schemas
+refb:https://www.upwork.com/hiring/data/sql-vs-nosql-databases-whats-the-difference/)
+ref1:(https://docs.oracle.com/javase/7/docs/api/java/util/Hashtable.html)
+ref2:http://databasemanagement.wikia.com/wiki/Relational_Database:_Keys
+ref3:(https://docs.oracle.com/cd/E26161_02/html/GettingStartedGuide/schema.html)
+ref4:https://en.wikipedia.org/wiki/NoSQL#Key-value_store
