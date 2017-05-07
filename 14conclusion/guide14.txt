@@ -1,0 +1,49 @@
+Guide 14
+Nathanael Dick
+Read Section 30.1:
+Name and explain the for kinds of control measures required for database security.
+	quotes means somewhere quoted
+	"Access control
+		Whenever a person or a group of persons needs to access a database system, the
+		individual or group must first apply for a user account.
+	 Inference control
+			Statistical databases are used to provide statistical information or summaries of
+			values based on various criteria. For example, a database for population statistics
+			may provide statistics based on age groups, income levels, household size, education
+			levels, and other criteria.
+	 Flow control
+			which prevents information from
+			flowing in such a way that it reaches unauthorized users.
+	 Data encryption
+			which is used to protect sensitive data
+			(such as credit card numbers) that is transmitted via some type of communications
+			network."
+	Compare and contrast information security and information privacy.
+		"Security in information technology refers to many aspects of protecting a system
+		from unauthorized use, including authentication of users, information encryption,
+		access control, firewall policies, and intrusion detection"
+
+		"privacy is the ability
+		of individuals to control the terms under which their personal information is
+		acquired and used."
+
+Read Imperva’s Top 5 Database Security Threats.
+Name and explain the security threats discussed in the article.
+	"What are the Top 5 Database Security Threats?
+		1. Excessive, inappropriate, and unused privileges
+		When you grant someone database privileges that exceed the requirements of their job function,
+		these privileges can be abused.
+		2. Privilege abuse
+		When you grant someone database privileges that exceed the requirements of their job function,
+		these privileges can be abused.
+		3. Insufficient web application security
+		Most organizations rely heavily on apps to interface with customers. There are many types of
+		attacks on applications that can expose data. Two common types of web application attacks that
+		target databases are SQL Injection and Web Shell. 
+		4.Weak audit trails
+		The failure
+		to monitor for both security and compliance anomalies and collect the appropriate audit details
+		of database activity represents a serious organizational risk at many levels.
+		5. Unsecured storage media
+		 Numerous security breaches have involved the theft or incidental
+		exposure of database backup disks and tapes. "
