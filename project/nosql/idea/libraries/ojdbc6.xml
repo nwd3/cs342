@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="ojdbc6">
+    <CLASSES>
+      <root url="jar://C:/glassfish-4.1-web/glassfish4/glassfish/lib/ojdbc6.jar!/" />
+      <root url="jar://C:/kv-3.0.9/lib/kvclient.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
