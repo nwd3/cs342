@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="dataSourceStorageLocal">
+    <data-source name="Oracle - @localhost" uuid="f1337479-e3e4-4e33-b88a-3d9a0540e6a2">
+      <database-info product="Oracle" version="Oracle Database 11g Express Edition Release 11.2.0.2.0 - 64bit Production" jdbc-version="4.0" driver-name="Oracle JDBC driver" driver-version="12.1.0.2.0">
+        <extra-name-characters>$#</extra-name-characters>
+        <identifier-quote-string>&quot;</identifier-quote-string>
+      </database-info>
+      <case-sensitivity plain-identifiers="upper" quoted-identifiers="exact" />
+      <secret-storage>master_key</secret-storage>
+      <user-name>dndb</user-name>
+      <introspection-scope>*:DNDB,PUBLIC,SYS,SYSTEM</introspection-scope>
+      <resolve-scope>*:DNDB,PUBLIC</resolve-scope>
+    </data-source>
+  </component>
+</project>
