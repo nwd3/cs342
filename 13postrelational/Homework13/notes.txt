@@ -2,25 +2,24 @@ Store answers the following questions in a Homework13/notes.txt file in your sol
 
 
 1.What type of noSQL database system is Oracle’s NoSQL product, KVLite?
-
+	KVLite is a key-valued nosql implementation.(project 5 extensions,Ref2)
 	KVLite is a noSQL product used by Oracle.  It is a default oracle product.
-	"KVLite is a simplified version of Oracle NoSQL Database. It provides a single-node store that is not replicated. It runs in a single process without requiring any administrative interface. You configure, start, and stop KVLite using a command line interface.
-	KVLite is intended for use by application developers who need to unit test their Oracle NoSQL Database application.
-	It is not intended for production deployment, or for performance measurements." Ref1
+"KVLite is a simplified version of Oracle NoSQL Database. It provides a single-node store that is not replicated. It runs in a single process without requiring any administrative interface. You configure, start, and stop KVLite using a command line interface.
+KVLite is intended for use by application developers who need to unit test their Oracle NoSQL Database application.
+It is not intended for production deployment, or for performance measurements." Ref1
 
 2.The Internet Movie DataBase (imdb.com) is currently implemented in mySQL. If you were required to port it to a noSQL system, which of the noSQL system types would you suggest?
  Explain your answer.
  
-	I  did some research and I decided to use a key based no sql database. I chose a key-value based system because the movies are somewhate key-value based and thus it would 
-	be easier to map the sql based database over to nosql.  Therefore I chose HyperDex as my database.  HyperDex provides the Acid properties to the database which is important.  It also allows
+	I  did some research and I decided to use a key based no sql database. I chose a key-value based system because the movies are somewhate key-value based and thus it would be easier to map the sql based database over to nosql.  Therefore I chose HyperDex as my database.  HyperDex provides the Acid properties to the database which was important to my implementation.  It also allows
 	use of "next generation query protocols" ensuring that HyperDex operates "with minimal overhead."
 	HyperDex is also very scaleable ensuring that large amounts of data can be added.  It also has good tolerance.
-	For all these reasons(As well as because HyperDex is opensource) I believe HyperDex provides a good application for implementing a nosql system.
-	Ref2
+	For all these reasons(As well as because HyperDex is opensource) I believe HyperDex provides a good application for implementing a nosql system.  Ref2
 
 
 3.Could you (efficiently) reuse the same key-value structure for exercise 13.1.d (above) and its “opposite”, i.e., get the movies in which a given actor is cast? Why or why not?
-	No you can not nosql does not allow for reversible joins.  This would require accessing a new structure as well and accessing the casted actor ids.
+	No you could not nosql does not work well with reversible joins.  This would require looping another time through the current datasturcute to get all the movieIds then looping through my role key structure getting all the actor's ids corresponding to that movie.
+	Then looping through my actor key structure accessing their names.  Not very efficient.
 
 NoSQL databases are often referred to as schema-less or schema-free. Explain what this means using examples from your homework solution.
 	"A schema-less database does not require conformation to a rigid schema (database, schema, data types, tables etc.) that one is required to live up to through the life of a system.
@@ -30,7 +29,7 @@ NoSQL databases are often referred to as schema-less or schema-free. Explain wha
 	Eliminates the need to introduce additional layers (ORM layer) to abstract the relational model and expose it in an object oriented format." Ref3
 
 	Examples from homework 13
-	"Eliminates the need to introduce additional layers (ORM layer) to abstract the relational model and expose it in an object oriented format."
+	"Eliminates the need to introduce additional layers (ORM layer) to abstract the relational model and expose it in an object oriented format."Ref3
 	Example: You are not making a key in an object oriented format note:
 
 	key2223 = Key.createKey(Arrays.asList("actor",actorIdString),Arrays.asList("firstname",valueString2,"lastname",valueString3));
@@ -39,10 +38,12 @@ NoSQL databases are often referred to as schema-less or schema-free. Explain wha
 	 //here I put my values
 				oracle.kv.Value value2 = oracle.kv.Value.createValue(actorIdString.getBytes());
 				store3.put(key2223,value2);
+				they are all strings and in above where I created the key and recieved the values in there was no check.
 
 			
 			
 			
-Ref3:https://blog.couchbase.com/the-value-of-schema-less-databases/
+
 Ref1:https://docs.oracle.com/cd/E26161_02/html/GettingStartedGuide/kvlite.html
 Ref2:https://en.wikipedia.org/wiki/HyperDex
+Ref3:https://blog.couchbase.com/the-value-of-schema-less-databases/
