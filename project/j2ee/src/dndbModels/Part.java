@@ -103,7 +103,11 @@ public class Part {
         result = 31 * result + (price != null ? price.hashCode() : 0);
         return result;
     }
-
+/*
+* @ManyToMany
+* this relationship uses a gets all the order with each part
+* particulary useful when trying to understand what parts are being sold in the orders
+*/
     @ManyToMany
     @JoinTable(name = "Partorder", schema="DNDB",
             joinColumns = @JoinColumn(name = "pon", referencedColumnName = "id",nullable = false),
