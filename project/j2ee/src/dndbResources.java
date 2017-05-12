@@ -30,13 +30,17 @@ import static jdk.nashorn.internal.runtime.PropertyDescriptor.GET;
  *
  * The get, put, and post methods are valuable as outlined for the following reasons
  *
- * Get Discussion of importance Methods Implemented Below
+ * Get: Discussion of importance Methods Implemented Below
  * Note:Get employees/id
  *  Very valuable if you want to be able to easily access the properties of an employee based on their id
  * Note: Get orders/id
  *      Very valuable if you want to be able to easily access the properties of an order based on their id
- *
- *  Put Important Methods discussed here implemented below
+ *Note: Get part/id
+        This would be valuable to be able to get the desired part when I need to know information about that specific part
+ *Note: Get customer/id
+        This would be extremely valuable to access the properties of a specific customer.
+        
+ *  Put: Method's importance discussed here implemented below
  *  Note Put/ employee/x
  *      very valuable for modifying a given person with the inputted information.  If I am updating an employee's information this
  *  would be very valuable
@@ -46,13 +50,13 @@ import static jdk.nashorn.internal.runtime.PropertyDescriptor.GET;
  *      This is also valuable ecspecially because I would update the orders fields a lot because I am attempting to update
  *  when the order has acutally shipped.
  *  Note Put /part/x
- *      This could be extremely useful ecspecially because I would do a lot of upkeep on the quanity of parts available so this
+ *      This could be useful ecspecially because I would do a lot of upkeep on the quanity of parts available so this
  *  would help with that
  *
  *
- *  Post Important Methods discussed here implemented below
+ *  Post: Method's importance discussed here implemented below
  *  Note Post/employee/id
- *      Tis is very useful this allows the user to input a valid employee object  to update the database
+ *      This is very useful this allows the user to input a valid employee object  to update the database
  *  Note Post /customer/id
  *   This is very useful because all I have to do is add a new customer by inserting the attributes into the cstomer.
  *  Note Post /order/id
@@ -189,9 +193,9 @@ public class dndbResources {
     @Path("/orders")
     @Consumes("application/json")
     @Produces("application/json")
-    public void AddOrder(Order orderin){
-
+    public Orders AddOrder(Order orderin){
         em.persist(orderin);
+        return orderin;
     }
 
     //post part based on the object inputted
