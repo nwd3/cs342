@@ -102,6 +102,7 @@ public class LoadDB {
 
             //here I create the key and the actor join key
             key2223 = Key.createKey(Arrays.asList("actor",actorIdString),Arrays.asList("firstname",valueString2,"lastname",valueString3));
+           //i never actually used the key below
             keyActorIdJoin = Key.createKey(Arrays.asList("actorJoin",idRe),Arrays.asList("firstname",valueString2,"lastname",valueString3));
 
             //here I put my values
