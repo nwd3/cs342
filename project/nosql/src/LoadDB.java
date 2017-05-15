@@ -1,34 +1,34 @@
 import jdk.internal.org.objectweb.asm.tree.analysis.Value;
-
 import oracle.kv.*;
-
 import java.sql.*;
 import java.util.*;
-
 import static jdk.internal.org.objectweb.asm.tree.analysis.Value.*;
 
 /*Evaluation of whether or not Oracles's KVLite key-value system is the best type of noSql database for my proj app:
- Without looking into other nosql technologies I believe a keybased approach is a good way to implement the dndb database in sql.  I 
- found it easy to map the current sql tables to the nosql key valued system quite intuitive.  Further for the things I might plan
- on doing for the database like simple joins and sorting the tables orcales nosql system provides all I need to implement
- a useful nosql database.
- */
+* Without looking into other nosql technologies I believe a keybased approach is a good way to implement the dndb database in sql.  I 
+* found it easy to map the current sql tables to the nosql key valued system quite intuitive.  Further for the things I might plan
+* on doing for the database like simple joins and sorting the tables orcales nosql system provides all I need to implement
+* a useful nosql database.
+*
+*Explanation of your use of noSQL:
+* I used noSql to be able to create keys to sort the orders and to join a table.  This noSQL implemenation allows me to create some simple 
+* methods to use in noSQL.
+*************************************************************************************************/
  /**
  * This program used JDBC to query all the orders, and employees from the DNDB orders and employees tables.
  * Include ojdbc6.jar (from the J2EE library) in the system path to support the JDBC functions.
  * @author Nathanael Dick
  * @version Spring, 2017
- */
+ ************************************************************************************************/
 public class LoadDB {
   
     public static void main(String[] args) throws SQLException {
 
         KVStore store4 = KVStoreFactory.getStore(new KVStoreConfig("kvstore", "localhost:5000"));
-
         Key SortedKey = null;
         Key OrderKey = null;
         Key keySort = null;
-
+//connection made
         Connection jdbcConnection = DriverManager.getConnection(
                 "jdbc:oracle:thin:@localhost:1521:xe", "dndb", "gh");
         Statement jdbcStatement = jdbcConnection.createStatement();
