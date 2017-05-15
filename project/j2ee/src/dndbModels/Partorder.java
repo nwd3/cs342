@@ -3,7 +3,8 @@ package dndbModels;
 import javax.persistence.*;
 
 /**
- * Created by nwd3 on 5/11/2017.
+ * @author Nathanael Dick
+ * @version Spring, 2017
  */
 @Entity
 public class Partorder {
