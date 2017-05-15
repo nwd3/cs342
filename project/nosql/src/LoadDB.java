@@ -7,13 +7,13 @@ import java.util.*;
 
 import static jdk.internal.org.objectweb.asm.tree.analysis.Value.*;
 
-/**
- *Evaluation of whether or not Oracles's KVLite key-value system is the best type of noSql database for my proj app:
+/*Evaluation of whether or not Oracles's KVLite key-value system is the best type of noSql database for my proj app:
  Without looking into other nosql technologies I believe a keybased approach is a good way to implement the dndb database in sql.  I 
  found it easy to map the current sql tables to the nosql key valued system quite intuitive.  Further for the things I might plan
  on doing for the database like simple joins and sorting the tables orcales nosql system provides all I need to implement
  a useful nosql database.
- 
+ */
+ /**
  * This program used JDBC to query all the orders, and employees from the DNDB orders and employees tables.
  * Include ojdbc6.jar (from the J2EE library) in the system path to support the JDBC functions.
  * @author Nathanael Dick
