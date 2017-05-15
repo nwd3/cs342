@@ -6,11 +6,13 @@
 --Which I believe I accomplished.  Now inserting customers etc into the database is vastly easier
 --and the procedure does all the work
 --Note I tested these procedures on the bottom
+--Note I locked the whole tables because I thought this would be a good solution for the my implementation
 
 --these are all helper functions
 CREATE or replace FUNCTION nextCN RETURN INTEGER AS
 counter integer;
 BEGIN
+Lock table customer;
   select max(cust_num) into counter from customer;
   return counter + 1;
 END nextCN;
@@ -18,6 +20,7 @@ END nextCN;
 CREATE or replace FUNCTION nextON RETURN INTEGER AS
 counter integer;
 BEGIN
+  Lock table orders;
   select max(order_num) into counter from orders;
   return counter + 1;
 END nextON;
@@ -27,7 +30,8 @@ return integer
 as
 PartId integer;
 Begin
-select * into PartId from(select part_num from part where part_name = partnameIN) where rownum =1;
+	Lock table part;
+	select * into PartId from(select part_num from part where part_name = partnameIN) where rownum =1;
 	return PartId;
 End;
 /
@@ -37,8 +41,9 @@ return integer
 as
 empNumber integer;
 Begin
-select employee_number into empNumber from empOpView where rownum =1;
-return empNumber;
+	Lock Table Employee;
+	select employee_number into empNumber from empOpView where rownum =1;
+	return empNumber;
 End;
 /
 
@@ -52,10 +57,15 @@ as
 	PartId integer;
 	custNUM integer;
 begin 
+--added this part
+	Lock table customer;
 	select cust_num into custNUM from orders where nextONR = order_num;
 	insert into partorder values (PartId,nextONR,quanityIn);
 	updatePartTableOnOrder(getPartId(partnameIN),quanityIn);
+	
+	commit customer;
 	dbms_output.put_line( 'You have added to order number: ' || nextONR || 'for customer ' || custNUM || 'To add more to this order you can run the AddToOrder Procedure again.' );
+
 end;
 /
 
@@ -64,9 +74,12 @@ end;
 CREATE OR REPLACE PROCEDURE updatePartTableOnOrder(partId in part.part_num%type, quanityIn in part.quantity%type)
 as
 Begin
+--added this part
+	Lock table part;
 	update part
 		set quantity = quantity - quanityIn
 		where part_num = PartId;
+	commit;
 End;
 /
 
@@ -74,9 +87,11 @@ End;
 CREATE OR REPLACE PROCEDURE updatePartTableOnNew(partId in part.part_num%type, quanityIn in part.quantity%type)
 as
 Begin
+	Lock table part;
 	update part
 		set quantity = quantity + quanityIn
 		where part_num = PartId;
+	commit;
 End;
 /
 
@@ -99,7 +114,11 @@ CREATE OR REPLACE PROCEDURE ADDCUSTOMERAndOrder(firstNameIN in customer.firstNam
 	nextONR integer;
 	nextCNR integer;
 	pid integer;
+	
 Begin
+	--added this part
+	lock table customer;
+	
 	nextCNR := nextCN();
 	INSERT INTO customer
 				VALUES (nextCNR,firstNameIn, lastnameIn,
@@ -111,15 +130,18 @@ Begin
 				cityIn,
 				stateIn,
 				zipcodeIn);
-				--this checks to see if a transaction was desired by the person that inserted the customer
+	--this checks to see if a transaction was desired by the person that inserted the customer
+	
 	if transactionNY = 1 then
 		nextONR := nextON();
 		insert into orders values (nextONR,sysdate,sysdate + 120/24,'',getOpenEmployee(),nextCNR,num_of_products,8253);
+		commit;
 		updatePartTableOnOrder(getPartId(partnameIN), num_of_products);
 		--output an informative message
 		dbms_output.put_line( 'You have created orderNumber: ' || nextONR || 'for customer ' || nextCNR || 'To add more to this order you can run the AddToOrder Procedure');
 		commit;
 	end if;
+	commit;
 END;
 /
 
@@ -139,8 +161,9 @@ CREATE OR REPLACE PROCEDURE ADDCUSTOMER(firstNameIN in customer.firstName%type,
 	nextCNR integer;
 	pid integer;
 Begin
-nextCNR := nextCN();
-INSERT INTO customer
+	Lock table customer;
+	nextCNR := nextCN();
+	INSERT INTO customer
 				VALUES (nextCNR,firstNameIn, lastnameIn,
 				email_addressIn,
 				shipping_AddressIn,
@@ -150,6 +173,7 @@ INSERT INTO customer
 				cityIn,
 				stateIn,
 				zipcodeIn);
+	commit;
 END;
 /
 
@@ -157,9 +181,11 @@ END;
 CREATE OR REPLACE PROCEDURE shipped(orderNumIn in orders.order_num%type)
 as
 Begin
+	Lock table orders;
 	update orders
 		set act_ship_date=sysdate
 		where order_num = orderNumIn;
+	commit;
 End;
 /
 
