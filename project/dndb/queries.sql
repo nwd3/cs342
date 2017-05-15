@@ -5,7 +5,11 @@
 
 --Note: I updated the database, vision statement and addressed comments you made 
 --when grading project 3.
---This is the updated query that I updated project 4 to include the missing outer iner join combo
+--this query gets information about the feedback based on the partnumber
+--and the employee
+--this can be valuable to determine what feedback I might get on a part
+--and employee
+--I could have used other join methods but I wanted to inner join the specific tables
 select distinct e.firstName, c.firstName, c.lastName, o.order_num, po.part_num, f.feedback
 from employees e
 	inner join orders o 
@@ -17,23 +21,7 @@ from employees e
 		on o.cust_num = c.cust_num
 	 join feedback f 
 		on f.cust_num=c.cust_num;
---this query gets information about the feedback based on the partnumber
---and the employee
---this can be valuable to determine what feedback I might get on a part
---and employee
---I could have used other join methods but I wanted to inner join the specific tables
-select distinct e.firstName, c.firstName, c.lastName, o.order_num, po.part_num, f.feedback
-from employees e
-	inner join orders o 
-		on o.employee_number=e.employee_number 
-		and e.firstName='Nathanael'
-	inner join partorder po 
-		on po.order_num=o.order_num
-	inner join customer c 
-		on o.cust_num = c.cust_num
-	 join feedback f 
-		on f.cust_num=c.cust_num;
-		
+
 	--these queries can help me get more info about the shipping address and update the shipping address
 	--based on the fact you need a correct zipcode to ship and it cannot be null
 select c.firstName, c.lastName, c.shipping_Address, phone_number
