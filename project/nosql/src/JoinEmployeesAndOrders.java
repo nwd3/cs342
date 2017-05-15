@@ -1,5 +1,4 @@
 import oracle.kv.*;
-
 import java.sql.SQLException;
 import java.util.Arrays;
 import java.util.Map;
@@ -18,13 +17,14 @@ import java.util.Scanner;
 * You can see the order information Very useful if you forgot what employee number correspons to a given id and just to get
 * useful information about an order
 ******************************************************************************/
+
 /**
- *  This class runs a method that takes user input and gets valuable information about the employee
- * like their name and the order number and displays that information.
- *
- * @author Nathanael Dick
- * @version Spring, 2017
- */
+* This class runs a method that takes user input and gets valuable information about the employee
+* like their name and the order number and displays that information.
+*
+* @author Nathanael Dick
+* @version Spring, 2017
+******************************************************************************/
 public class JoinEmployeesAndOrders {
     public static void main(String[] args) throws SQLException {
         //user program
