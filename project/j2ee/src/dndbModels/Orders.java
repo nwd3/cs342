@@ -5,8 +5,10 @@ import java.sql.Time;
 import java.util.Collection;
 
 /**
- * Created by nwd3 on 5/11/2017.
- *note see relationships at end of file
+ * Class orders
+ * note see relationships at end of file
+ * @author Nathanael Dick
+ * @version Spring, 2017
  */
 @Entity
 public class Orders {
