@@ -7,14 +7,11 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
-
 import dndbModels.*;
-
 import java.awt.*;
-
 import static jdk.nashorn.internal.runtime.PropertyDescriptor.GET;
 
-/**
+/*
  *
  * Created by nwd3 on 5/10/2017.
  *
@@ -90,15 +87,24 @@ import static jdk.nashorn.internal.runtime.PropertyDescriptor.GET;
  *
  */
 
+
+/**
+*Class: dndbResoruces
+* The Java class will be hosted at the URI path "/dndb"
+* The Java class will host the get,put,post,and delete methods for the dndbResources class
+*
+* @author Nathanael Dick
+* @version Spring, 2017
+************************************************************************/
 @Stateless
-// The Java class will be hosted at the URI path "/dndb"
 @Path("dndb")
 public class dndbResources {
     @PersistenceContext
     private EntityManager em;
 
- // These Java method will process HTTP GET requests
-    //informative method to connect to the database
+ /*These Java method will process HTTP GET requests
+  *informative method to connect to the database
+  ************************************************/
     @GET
     @Path("hello")
     @Produces("text/plain")
@@ -108,7 +114,7 @@ public class dndbResources {
 
     /*get all the employee ids
     *at /employee{param}
-    */
+    ************************************************/
     @GET
     @Path("employee/{id}")
     @Produces(MediaType.APPLICATION_JSON)
@@ -118,8 +124,8 @@ public class dndbResources {
     }
 
     /*gets the orders based off the order id
-      *at orders/{param}
-      */
+     *at orders/{param}
+     ************************************************/
     @GET
     @Path("orders/{id}")
     @Produces(MediaType.APPLICATION_JSON)
