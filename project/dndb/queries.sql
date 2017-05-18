@@ -2,6 +2,7 @@
 --Project 3 on DNDB database
 --Note: I updated the database, vision statement, erd, added a lot more data, added constraints, and addressed comments you made 
 --when grading project 2.
+--Revised 5/18/2017
 
 --Note: I updated the database, vision statement and addressed comments you made 
 --when grading project 3.
@@ -117,6 +118,7 @@ from orders o, customer c
 					
 --this gets all the parts that are needed to ship out by march 3 very valuable
 --for day to day fulfillment of our orders in our company
+--note join of at least 4 tables
 select e.firstName||' '||e.lastName||' '||' '||p.part_Desc||' quantity: '||po.quantity "parts needed to ship out"
 from employees e, partorder po, part p, orders o
 	where o.employee_number=e.employee_number
