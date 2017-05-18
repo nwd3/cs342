@@ -4,12 +4,13 @@ import java.util.Iterator;
 import java.util.Map;
 
 /*
+*Notes for project see class doc before class definition
 *Evaluation of whether or not Oracles's KVLite key-value system is the best type of noSql database for my proj app:
 * Without looking into other nosql technologies I believe a keybased approach is a good way to implement the dndb database in sql.  I 
 *found it easy to map the current sql tables to the nosql key valued system quite intuitive.  Further for the things I might plan
 *on doing for the database like simple joins and sorting the tables orcales nosql system provides all I need to implement
 *a useful nosql database.
-* Created by nwd3 on 5/11/2017.
+*
 *Why information they provide is appropriate for a noSQL solution:
 *    The information is appropriate because it efficiently maps to keys that can be sorted by their value.  The information shows the usefulness
 *  of keys and how keys can be sorted by their values.
