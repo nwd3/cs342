@@ -4,6 +4,8 @@ import javax.persistence.*;
 import java.util.Collection;
 
 /**
+* Part: creates a part class that allows for parts to be inserted see documentation about relationships at the end 
+* of the file
  * @author Nathanael Dick
  * @version Spring, 2017
  */
