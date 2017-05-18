@@ -3,6 +3,7 @@ package dndbModels;
 import javax.persistence.*;
 
 /**
+ * PartOrder models the partorder table and allows a partorder object to be created
  * @author Nathanael Dick
  * @version Spring, 2017
  */
