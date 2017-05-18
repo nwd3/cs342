@@ -1,4 +1,4 @@
---Procedures Project 4 Application
+--Procedures Project Application
 --this procedure drives the procedure that inserts the 
 --actors and their bacon numbers into the baconTable
 --my idea is to create a transaction procedure
@@ -6,7 +6,12 @@
 --Which I believe I accomplished.  Now inserting customers etc into the database is vastly easier
 --and the procedure does all the work
 --Note I tested these procedures on the bottom
+
+--ADDED THE FOLLOWING
 --Note I locked the whole tables because I thought this would be a good solution for the my implementation
+--I added locks and exceptions
+--Note: these procedures contain exceptions which I added for final submission:
+---ADDCUSTOMERAndOrder,updatePartTableOnNew
 
 --these are all helper functions
 CREATE or replace FUNCTION nextCN RETURN INTEGER AS
@@ -63,7 +68,7 @@ begin
 	insert into partorder values (PartId,nextONR,quanityIn);
 	updatePartTableOnOrder(getPartId(partnameIN),quanityIn);
 	
-	commit customer;
+	commit;
 	dbms_output.put_line( 'You have added to order number: ' || nextONR || 'for customer ' || custNUM || 'To add more to this order you can run the AddToOrder Procedure again.' );
 
 end;
@@ -84,13 +89,25 @@ End;
 /
 
 --this updates the part table when a new shipment of parts has arrived
+--note added locks and rollback
 CREATE OR REPLACE PROCEDURE updatePartTableOnNew(partId in part.part_num%type, quanityIn in part.quantity%type)
 as
+exceptNegQuanity Exception;
+quanCheck integer;
+
 Begin
 	Lock table part;
 	update part
 		set quantity = quantity + quanityIn
 		where part_num = PartId;
+		select quanity into quanCheck from part where part_num = PartId;
+		if quanCheck <= 0 then
+			raise exceptNegQuanity
+		end if;
+		--Exceptions added 
+		EXCEPTION
+			when exceptNegQuanity then
+		rollback;
 	commit;
 End;
 /
@@ -98,6 +115,7 @@ End;
 --this allows me to add a customer and an order at the same time
 --I did this together because most of the time when we add a customer
 --we also add a order at the same time
+--note added exception
 CREATE OR REPLACE PROCEDURE ADDCUSTOMERAndOrder(firstNameIN in customer.firstName%type,
 	lastnameIn in  customer.lastname%type,
 	email_addressIn customer.email_address%type,
@@ -114,11 +132,13 @@ CREATE OR REPLACE PROCEDURE ADDCUSTOMERAndOrder(firstNameIN in customer.firstNam
 	nextONR integer;
 	nextCNR integer;
 	pid integer;
+	exceptR Exception;
 	
 Begin
 	--added this part
-	lock table customer;
+	
 	nextCNR := nextCN();
+	lock table customer;
 	INSERT INTO customer
 				VALUES (nextCNR,firstNameIn, lastnameIn,
 				email_addressIn,
@@ -133,14 +153,25 @@ Begin
 	
 	if transactionNY = 1 then
 		nextONR := nextON();
+		Lock table orders;
 		insert into orders values (nextONR,sysdate,sysdate + 120/24,'',getOpenEmployee(),nextCNR,num_of_products,8253);
+		
+		select quanity into checkQuan
+			from orders
+				where order_num = nextONR;
+		if checkQuan < 1 then
+			raise exceptR;
+		end if;
 		commit;
 		updatePartTableOnOrder(getPartId(partnameIN), num_of_products);
 		--output an informative message
 		dbms_output.put_line( 'You have created orderNumber: ' || nextONR || 'for customer ' || nextCNR || 'To add more to this order you can run the AddToOrder Procedure');
-		commit;
+		
 	end if;
 	commit;
+	EXCEPTION 
+		when exceptR then
+		rollback;
 END;
 /
 
@@ -160,8 +191,9 @@ CREATE OR REPLACE PROCEDURE ADDCUSTOMER(firstNameIN in customer.firstName%type,
 	nextCNR integer;
 	pid integer;
 Begin
-	Lock table customer;
+	
 	nextCNR := nextCN();
+	Lock table customer;
 	INSERT INTO customer
 				VALUES (nextCNR,firstNameIn, lastnameIn,
 				email_addressIn,
