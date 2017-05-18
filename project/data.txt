@@ -2,7 +2,8 @@
 but some of the data is real data from my etsy store.  I plan on adding more real data as I continue with this project.
 I now added more data found on drop http://generatedata.com/.  See data for more details
 
-2.I decided to use to 4th Normal Form because all my tables are in 4th normal form already.  Thus I ensure that my database is in a desireable form to access data.
+2.I decided to use to 4th Normal Form because all my tables are in 4th normal form already--there are no multivalued dependencies
+and the functional dependencies are outlined below.  Thus I ensure that my database is in a desireable form to access data.
 
 Also dndb stands for DNwoodcrafters Database.
 employees:
