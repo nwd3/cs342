@@ -41,17 +41,17 @@ public class JoinEmployeesAndOrders {
      
      //create the keys to access the orders key
         Key majorKeyPathOnly333 = Key.createKey(Arrays.asList("orders",getOrderNumber));
-        Map<Key, ValueVersion> roleFields = store4.multiGet(majorKeyPathOnly333, null, null);
+        Map<Key, ValueVersion> orderFields = store4.multiGet(majorKeyPathOnly333, null, null);
      
      //for loop iterates over the keys
-        for (Map.Entry<Key, ValueVersion> roleFieldsIterator : roleFields.entrySet()) {
+        for (Map.Entry<Key, ValueVersion> orderFieldsIterator : orderFields.entrySet()) {
          
          //after I get the empnumber values now I can get the employee values this works well to be able to get the firstname and lastname of the meployees
-            Key majorKeyPathOnly33348 = Key.createKey(Arrays.asList("employee",roleFieldsIterator.getKey().getMinorPath().get(1)));
+            Key majorKeyPathOnly33348 = Key.createKey(Arrays.asList("employee",orderFieldsIterator.getKey().getMinorPath().get(1)));
             Map<Key, ValueVersion> actorFields = store4.multiGet(majorKeyPathOnly33348, null, null);
             //for loop drives the join values to be displayed
-         for (Map.Entry<Key, ValueVersion> actorFieldsIterator : actorFields.entrySet()) {
-                System.out.println("\t\t"+"Order Information "+ roleFieldsIterator.getKey().getMajorPath().get(1)+" employeeInformation: "+roleFieldsIterator.getKey().getMinorPath().get(1)+" "+actorFieldsIterator.getKey().getMinorPath().get(1)+" "+actorFieldsIterator.getKey().getMinorPath().get(3));
+         for (Map.Entry<Key, ValueVersion> employeeFields : actorFields.entrySet()) {
+                System.out.println("\t\t"+"Order Information "+ orderFieldsIterator.getKey().getMajorPath().get(1)+" employeeInformation: "+orderFieldsIterator.getKey().getMinorPath().get(1)+" "+employeeFields.getKey().getMinorPath().get(1)+" "+employeeFields.getKey().getMinorPath().get(3));
             }
         }
     }
