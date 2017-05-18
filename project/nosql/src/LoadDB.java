@@ -21,7 +21,7 @@ import static jdk.internal.org.objectweb.asm.tree.analysis.Value.*;
  /**
  * This program used JDBC to query all the orders, and employees from the DNDB orders and employees tables.
  * I included ojdbc6.jar (from the J2EE library) in the system path to support the JDBC functions.
- *
+ *Reference:http://www.oracle.com/technetwork/articles/bigdata/oracle-nosqldb-appdev-1891870.html
  *These are my key structures which I create:
  * employeeKey:
  *   /employee/$employeeid -/firstname,$firstname/lastname : $lastname
