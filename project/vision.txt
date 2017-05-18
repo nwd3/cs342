@@ -6,7 +6,7 @@ Subject: CS 342
 CS 342: Database Systems
 
 Project
-1.	Vision-
+1.	Vision-Statement
 
   My vision for the database project for CS 342 is the following:
   I have an Etsy business and website that sells handcrafted wood products to hundreds of people each year.  The business has access to hundreds of customer accounts, favorites, and product data.  My plan is to institute a database that can gather the data that has been accumulated on the Etsy site and my website.
