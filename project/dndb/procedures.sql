@@ -118,7 +118,6 @@ CREATE OR REPLACE PROCEDURE ADDCUSTOMERAndOrder(firstNameIN in customer.firstNam
 Begin
 	--added this part
 	lock table customer;
-	
 	nextCNR := nextCN();
 	INSERT INTO customer
 				VALUES (nextCNR,firstNameIn, lastnameIn,
