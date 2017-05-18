@@ -7,9 +7,10 @@
 --when grading project 3.
 --this query gets information about the feedback based on the partnumber
 --and the employee
+--combination of inner and outer join
 --this can be valuable to determine what feedback I might get on a part
 --and employee
---I could have used other join methods but I wanted to inner join the specific tables
+--I could have used other join methods but I wanted to inner and outer join the specific tables
 select distinct e.firstName, c.firstName, c.lastName, o.order_num, po.part_num, f.feedback
 from employees e
 	inner join orders o 
