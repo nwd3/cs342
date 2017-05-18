@@ -21,7 +21,9 @@ import java.util.Scanner;
 /**
 * This class runs a method that takes user input and gets valuable information about the employee
 * like their name and the order number and displays that information.
-*
+*Reference:http://www.oracle.com/technetwork/articles/bigdata/oracle-nosqldb-appdev-1891870.html
+https://commons.apache.org/proper/commons-collections/apidocs/org/apache/commons/collections4/map/MultiKeyMap.html
+other reference I can't find the link but heavily used
 * @author Nathanael Dick
 * @version Spring, 2017
 ******************************************************************************/
