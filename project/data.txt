@@ -1,9 +1,10 @@
+Revised 5/18/2017
 1. Some of the data I made up and some from 'behind the name' random name generator website 
 but some of the data is real data from my etsy store.  I plan on adding more real data as I continue with this project.
 I now added more data found on drop http://generatedata.com/.  See data for more details
 
 2.I decided to use to 4th Normal Form because all my tables are in 4th normal form already--there are no multivalued dependencies
-and the functional dependencies are outlined below.  Thus I ensure that my database is in a desireable form to access data.
+and the functional dependencies are outlined below.  Thus I ensure that my database is in the highest desireable form to access data.
 
 Also dndb stands for DNwoodcrafters Database.
 employees:
