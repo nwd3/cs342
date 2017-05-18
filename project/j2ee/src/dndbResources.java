@@ -13,8 +13,6 @@ import static jdk.nashorn.internal.runtime.PropertyDescriptor.GET;
 
 /*
  *
- * Created by nwd3 on 5/10/2017.
- *
  * Notes ON Project 5 Extensions Java ee part:
  *
  *
