@@ -14,9 +14,21 @@ import static jdk.internal.org.objectweb.asm.tree.analysis.Value.*;
 * I used noSql to be able to create keys to sort the orders and to join a table.  This noSQL implemenation allows me to create some simple 
 * methods to use in noSQL.
 *************************************************************************************************/
+
+
  /**
  * This program used JDBC to query all the orders, and employees from the DNDB orders and employees tables.
  * Include ojdbc6.jar (from the J2EE library) in the system path to support the JDBC functions.
+ 
+ *These are my key structures:
+ employeeKey:
+ /employee/$employeeid -/firstname,$firstname/lastname : $lastname
+ OrderKey:
+ /orders/$order_num/ -/empnum/$empnum/custnum/$custnum/exShipDate:  $expectedShipdate
+ SortedKey:
+ /sortedOrders/ -/$expectedShipdate/empnum/$employeenumber/custnum/$custnumber/ordernum  : $ordernumber
+ 
+ SortedKey:
  * @author Nathanael Dick
  * @version Spring, 2017
  ************************************************************************************************/
@@ -26,15 +38,15 @@ public class LoadDB {
 
         KVStore store4 = KVStoreFactory.getStore(new KVStoreConfig("kvstore", "localhost:5000"));
         Key SortedKey = null;
+        Key employeeKey=null;
         Key OrderKey = null;
-        Key keySort = null;
 //connection made
         Connection jdbcConnection = DriverManager.getConnection(
                 "jdbc:oracle:thin:@localhost:1521:xe", "dndb", "gh");
         Statement jdbcStatement = jdbcConnection.createStatement();
         Statement jdbcStatement2 = jdbcConnection.createStatement();
         ResultSet resultSet = jdbcStatement.executeQuery("SELECT employee_number, firstname, lastname FROM employees");
-ResultSet resultSet2 = jdbcStatement2.executeQuery("SELECT order_num, employee_number,cust_num,exp_ship_date, act_ship_date,quantity, total_order_value FROM orders");
+        ResultSet resultSet2 = jdbcStatement2.executeQuery("SELECT order_num, employee_number,cust_num,exp_ship_date, act_ship_date,quantity, total_order_value FROM orders");
 
 //this loads the keys from the employee table
         while (resultSet.next()) {
@@ -48,17 +60,18 @@ ResultSet resultSet2 = jdbcStatement2.executeQuery("SELECT order_num, employee_n
             String year = "lastname", lastnameString = resultSet.getString(3);
 
 //create the employee key
-            SortedKey = Key.createKey(Arrays.asList("employee",valueString),Arrays.asList("firstname",firstNameString,"lastname",lastnameString,"rating"));
+        //  /employee/$employeeid -/firstname,$firstname/lastname : $lastname
+            employeeKey = Key.createKey(Arrays.asList("employee",valueString),Arrays.asList("firstname",firstNameString,"lastname",lastnameString));
 
             // create the values for the key
             oracle.kv.Value value2 = oracle.kv.Value.createValue(valueString.getBytes());
-            store4.put(SortedKey,value2);
+            store4.put(employeeKey,value2);
 
             oracle.kv.Value value3 = oracle.kv.Value.createValue(firstNameString.getBytes());
-            store4.put(SortedKey,value3);
+            store4.put(employeeKey,value3);
 
             oracle.kv.Value value4 = oracle.kv.Value.createValue(lastnameString.getBytes());
-            store4.put(SortedKey,value4);
+            store4.put(employeeKey,value4);
         }
 
         //this loads the keys from the order table
@@ -77,13 +90,14 @@ ResultSet resultSet2 = jdbcStatement2.executeQuery("SELECT order_num, employee_n
             String name = "exShipDate", exShipDate = resultSet2.getString(4);
 
 //creates the key
-            OrderKey = Key.createKey(Arrays.asList("orders",valueString),Arrays.asList("empnum",valueString2,"custnum",custnum,",exShipDate",exShipDate));
-
+         //key structure: /orders/$order_num/ -/empnum/$empnum/custnum/$custnum/exShipDate:  $expectedShipdate
+            OrderKey = Key.createKey(Arrays.asList("orders",valueString),Arrays.asList("empnum",valueString2,"custnum",custnum,"exShipDate",exShipDate));
+                                           
 // /sorted key access orders by date see getordersortedbydate.java for implementation usage;
+         //key structure: /sortedOrders/ -/$expectedShipdate/empnum/$employeenumber/custnum/$custnumber/ordernum  : $ordernumber
             SortedKey = Key.createKey(Arrays.asList("sortedOrders"),Arrays.asList(exShipDate,"empnum",valueString2,"custnum",custnum,"ordernum",valueString));
-            //yearString for sorted table
-            //      keySort =Key.createKey(Arrays.asList("SortedMovies"), Arrays.asList("id",valueString,"name",exShipDate,"year",actShipDate));
-
+  
+                                                 
             //   put the key values
             oracle.kv.Value value9 = oracle.kv.Value.createValue(custnum.getBytes());
             store4.put(SortedKey,value9);
@@ -98,7 +112,7 @@ ResultSet resultSet2 = jdbcStatement2.executeQuery("SELECT order_num, employee_n
             store4.put(SortedKey,value3);
             store4.put(OrderKey,value3);
         }
-
+//close everything
         resultSet2.close();
         resultSet.close();
         jdbcStatement.close();
