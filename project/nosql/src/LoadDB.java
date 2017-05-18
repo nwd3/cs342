@@ -5,7 +5,7 @@ import java.util.*;
 import static jdk.internal.org.objectweb.asm.tree.analysis.Value.*;
 
 /*
-*Notes here added javadoc doc before class
+*Notes here added doc before class
 *Evaluation of whether or not Oracles's KVLite key-value system is the best type of noSql database for my proj app:
 * Without looking into other nosql technologies I believe a keybased approach is a good way to implement the dndb database in sql.  I 
 * found it easy to map the current sql tables to the nosql key valued system quite intuitive.  Further for the things I might plan
@@ -20,17 +20,17 @@ import static jdk.internal.org.objectweb.asm.tree.analysis.Value.*;
 
  /**
  * This program used JDBC to query all the orders, and employees from the DNDB orders and employees tables.
- * Include ojdbc6.jar (from the J2EE library) in the system path to support the JDBC functions.
- 
+ * I included ojdbc6.jar (from the J2EE library) in the system path to support the JDBC functions.
+ *
  *These are my key structures which I create:
- employeeKey:
- /employee/$employeeid -/firstname,$firstname/lastname : $lastname
- OrderKey:
- /orders/$order_num/ -/empnum/$empnum/custnum/$custnum/exShipDate:  $expectedShipdate
- SortedKey:
- /sortedOrders/ -/$expectedShipdate/empnum/$employeenumber/custnum/$custnumber/ordernum  : $ordernumber
- 
- SortedKey:
+ * employeeKey:
+ *   /employee/$employeeid -/firstname,$firstname/lastname : $lastname
+ * OrderKey:
+ *   /orders/$order_num/ -/empnum/$empnum/custnum/$custnum/exShipDate:  $expectedShipdate
+ * SortedKey:
+ *   /sortedOrders/ -/$expectedShipdate/empnum/$employeenumber/custnum/$custnumber/ordernum  : $ordernumber
+ *
+ *
  * @author Nathanael Dick
  * @version Spring, 2017
  ************************************************************************************************/
