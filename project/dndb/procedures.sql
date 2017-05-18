@@ -1,4 +1,5 @@
 --Procedures Project Application
+--Revised 5/18/2017
 --this procedure drives the procedure that inserts the 
 --actors and their bacon numbers into the baconTable
 --my idea is to create a transaction procedure
@@ -92,6 +93,7 @@ End;
 --note added locks and rollback
 CREATE OR REPLACE PROCEDURE updatePartTableOnNew(partId in part.part_num%type, quanityIn in part.quantity%type)
 as
+--added this part
 exceptNegQuanity Exception;
 quanCheck integer;
 
