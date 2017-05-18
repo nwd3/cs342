@@ -5,7 +5,7 @@ import java.sql.Time;
 import java.util.Collection;
 
 /**
- * Class orders
+ * Class orders: This class models the order table in oracle
  * note see relationships at end of file
  * @author Nathanael Dick
  * @version Spring, 2017
